@@ -1,1 +1,4 @@
-message: "Hello from chart!"
+nginx:
+  enabled: true
+  message: "Hello from nginx!"
+  replicaCount: 3
