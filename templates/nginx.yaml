@@ -35,7 +35,7 @@ data:
   index.html: |
     <html>
     <body>
-    <h1>{{ .Values.message }}</h1>
+    <h1>{{ .Values.nginx.message }}</h1>
     </body>
     </html>
 
