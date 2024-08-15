@@ -19,15 +19,15 @@ spec:
         ---
         additionalArguments:
           - --entrypoints.websecure.http.tls.certresolver=cloudflare
-          - --entrypoints.websecure.http.tls.domains[0].main=hess.pm
-          - --entrypoints.websecure.http.tls.domains[0].sans=*.hess.pm
+          - --entrypoints.websecure.http.tls.domains[0].main={{ .Values.domain }}
+          - --entrypoints.websecure.http.tls.domains[0].sans=*.{{ .Values.domain }}
           - --entryPoints.web.proxyProtocol.insecure
           - --entryPoints.web.forwardedHeaders.insecure
           - --entrypoints.web.http.redirections.entrypoint.to=websecure
           - --entrypoints.web.http.redirections.entrypoint.scheme=https
           - --entrypoints.web.http.redirections.entrypoint.permanent=true
           - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
-          - --certificatesresolvers.cloudflare.acme.email=Jonas@Hess.pm
+          - --certificatesresolvers.cloudflare.acme.email={{ .Values.cloudflare.email }}
           - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1
           - --certificatesresolvers.cloudflare.acme.storage=/data/dns_acme.json
         env:
@@ -43,7 +43,7 @@ spec:
                 name: cloudflare-api-credentials
 
         tls:
-          enabled: false
+          enabled: true
           # this is the name of a TLSOption definition
           options: ""
           certResolver: "cloudflare"

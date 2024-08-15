@@ -1,4 +1,6 @@
-domain: example.com
+domain: home-server.dev
+cloudflare:
+  email: "Jonas@hess.pm"
 nginx:
   enabled: true
   message: "Hello from nginx!"
