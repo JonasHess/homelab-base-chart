@@ -86,27 +86,32 @@ spec:
             port: 443
           plex:
             port: 32400
-            expose: true
+            expose:
+              enabled: true
             exposedPort: 32400
             protocol: TCP
           sftp:
             port: 2222
-            expose: true
+            expose:
+              enabled: true
             exposedPort: 2222
             protocol: TCP
           samba-548:
             port: 548
-            expose: true
+            expose:
+              enabled: true
             exposedPort: 548
             protocol: TCP
           samba-139:
             port: 139
-            expose: true
+            expose:
+              enabled: true
             exposedPort: 139
             protocol: TCP
           samba-445:
             port: 445
-            expose: true
+            expose:
+              enabled: true
             exposedPort: 445
             protocol: TCP
         
