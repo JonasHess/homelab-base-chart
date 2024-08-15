@@ -18,5 +18,5 @@ spec:
 #       middlewares:
 #         - name: traefik-forward-auth
 #           namespace: argocd
-#   tls:
-#     certResolver: cloudflare
+  tls:
+    certResolver: cloudflare
