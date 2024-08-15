@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: akeyless-secret-creds
-type: Opaque
-stringData:
-  accessId: "p-8qgga0byaeu4am"
-  accessType: "your-access-type"
-  accessTypeParam: "your-access-type-param"
