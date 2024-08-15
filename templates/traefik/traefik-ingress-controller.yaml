@@ -18,29 +18,29 @@ spec:
       values: |
         ---
         additionalArguments:
-#           - --entrypoints.websecure.http.tls.certresolver=cloudflare
-#           - --entrypoints.websecure.http.tls.domains[0].main=hess.pm
-#           - --entrypoints.websecure.http.tls.domains[0].sans=*.hess.pm
+          - --entrypoints.websecure.http.tls.certresolver=cloudflare
+          - --entrypoints.websecure.http.tls.domains[0].main=hess.pm
+          - --entrypoints.websecure.http.tls.domains[0].sans=*.hess.pm
           - --entryPoints.web.proxyProtocol.insecure
           - --entryPoints.web.forwardedHeaders.insecure
           - --entrypoints.web.http.redirections.entrypoint.to=websecure
           - --entrypoints.web.http.redirections.entrypoint.scheme=https
           - --entrypoints.web.http.redirections.entrypoint.permanent=true
-#           - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
-#           - --certificatesresolvers.cloudflare.acme.email=Jonas@Hess.pm
-#           - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1
-#           - --certificatesresolvers.cloudflare.acme.storage=/data/dns_acme.json
-#         env:
-#           - name: CF_API_EMAIL
-#             valueFrom:
-#               secretKeyRef:
-#                 key: email
-#                 name: cloudflare-api-credentials
-#           - name: CF_DNS_API_TOKEN
-#             valueFrom:
-#               secretKeyRef:
-#                 key: apiKey
-#                 name: cloudflare-api-credentials
+          - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
+          - --certificatesresolvers.cloudflare.acme.email=Jonas@Hess.pm
+          - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1
+          - --certificatesresolvers.cloudflare.acme.storage=/data/dns_acme.json
+        env:
+          - name: CF_API_EMAIL
+            valueFrom:
+              secretKeyRef:
+                key: email
+                name: cloudflare-api-credentials
+          - name: CF_DNS_API_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: apiKey
+                name: cloudflare-api-credentials
 
         tls:
           enabled: false
