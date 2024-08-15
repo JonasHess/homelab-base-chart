@@ -13,7 +13,7 @@ spec:
   storageClassName: manual
   hostPath:
     type: Directory
-    path: /mnt/tank1/unencrypted/apps/traefik
+    path: /var/kind-homelab/apps/traefik
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
