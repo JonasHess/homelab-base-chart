@@ -1,0 +1,166 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik-helm
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-options: Prune=true
+spec:
+  project: default
+  source:
+    chart: traefik
+    repoURL: https://helm.traefik.io/traefik
+    targetRevision: 23.1.0
+    helm:
+      # Values file as block file
+      values: |
+        ---
+        additionalArguments:
+          - --entrypoints.websecure.http.tls.certresolver=cloudflare
+          - --entrypoints.websecure.http.tls.domains[0].main=hess.pm
+          - --entrypoints.websecure.http.tls.domains[0].sans=*.hess.pm
+          - --entryPoints.web.proxyProtocol.insecure
+          - --entryPoints.web.forwardedHeaders.insecure
+          - --entrypoints.web.http.redirections.entrypoint.to=websecure
+          - --entrypoints.web.http.redirections.entrypoint.scheme=https
+          - --entrypoints.web.http.redirections.entrypoint.permanent=true
+          - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
+          - --certificatesresolvers.cloudflare.acme.email=Jonas@Hess.pm
+          - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1
+          - --certificatesresolvers.cloudflare.acme.storage=/data/dns_acme.json
+        env:
+          - name: CF_API_EMAIL
+            valueFrom:
+              secretKeyRef:
+                key: email
+                name: cloudflare-api-credentials
+          - name: CF_DNS_API_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: apiKey
+                name: cloudflare-api-credentials
+
+        tls:
+          enabled: false
+          # this is the name of a TLSOption definition
+          options: ""
+          certResolver: "cloudflare"
+
+        persistence:
+          enabled: false
+          path: /certs
+          size: 128Mi
+
+        persistence:
+          # -- Enable persistence using Persistent Volume Claims
+          # ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+          # It can be used to store TLS certificates, see `storage` in certResolvers
+          enabled: false
+          name: traefik-data
+          existingClaim: "pvc-traefik-data"
+          accessMode: ReadWriteMany
+          size: 128Mi
+          storageClass: "nfs"
+          volumeName: "traefik-pv"
+          path: /data
+          annotations: {}
+          # -- Only mount a subpath of the Volume into the pod
+          # subPath: ""
+
+        service:
+          enabled: true
+          type: LoadBalancer
+          externalIPs:
+            - 192.168.1.80
+        ssl:
+          enforced: false
+          permanentRedirect: false
+          upstream: false
+          insecureSkipVerify: true
+        ports:
+          web:
+            port: 80
+          websecure:
+            port: 443
+          plex:
+            port: 32400
+            expose: true
+            exposedPort: 32400
+            protocol: TCP
+          sftp:
+            port: 2222
+            expose: true
+            exposedPort: 2222
+            protocol: TCP
+          samba-548:
+            port: 548
+            expose: true
+            exposedPort: 548
+            protocol: TCP
+          samba-139:
+            port: 139
+            expose: true
+            exposedPort: 139
+            protocol: TCP
+          samba-445:
+            port: 445
+            expose: true
+            exposedPort: 445
+            protocol: TCP
+        
+        kubernetesIngress:
+          enabled: true
+          allowExternalNameServices: false
+          allowEmptyServices: false
+        logs:
+          # Traefik logs concern everything that happens to Traefik itself (startup, configuration, events, shutdown, and so on).
+          general:
+            # By default, the logs use a text format (common), but you can
+            # also ask for the json format in the format option
+            # format: json
+            # By default, the level is set to ERROR. Alternative logging levels are DEBUG, PANIC, FATAL, ERROR, WARN, and INFO.
+            level: DEBUG
+          access:
+            # To enable access logs
+            enabled: true
+        
+        serversTransport:
+          insecureSkipVerify: true
+        ssl:
+          insecureSkipVerify: true
+        ssl.insecureSkipVerify: true
+        
+        ingressRoute:
+          dashboard:
+            enabled: true # We will use a custom inrgessRoute with basic auth instead of the default one
+            insecure: true
+        
+        # The following lines are needed if you have an error like: error while building entryPoint web: error preparing server: error opening listener: listen tcp :80: bind: permission denied
+        # It just means that Traefik is unable to listen to connections on the host because of a lack of permissions.
+        # Hence the need for aditionnal permissions.
+        securityContext:
+          capabilities:
+            drop: [ALL]
+            add: [NET_BIND_SERVICE]
+          readOnlyRootFilesystem: true
+          runAsGroup: 0
+          runAsNonRoot: false
+          runAsUser: 0
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: argocd
+  syncPolicy:
+    automated:
+      allowEmpty: true
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - allowEmpty=true
+    retry:
+      limit: 5 # number of failed sync attempt retries; unlimited number of attempts if less than 0
+      backoff:
+        duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")
+        factor: 2 # a factor to multiply the base duration after each failed retry
+        maxDuration: 1m # the maximum amount of time allowed for the backoff strategy
