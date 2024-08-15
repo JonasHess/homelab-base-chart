@@ -46,18 +46,31 @@ spec:
           enabled: true
           # this is the name of a TLSOption definition
           options: ""
-          certResolver: "cloudflare"
+          certResolver: "letsencrypt"
 
-        persistence:
-          enabled: false
-          path: /certs
-          size: 128Mi
+        certResolvers:
+          letsencrypt:
+            dnsChallenge:
+              provider: cloudflare
+            storage: /data/acme.json
+
+        deployment:
+          initContainers:
+            - name: volume-permissions
+              image: busybox:latest
+              command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
+              volumeMounts:
+              - mountPath: /data
+                name: data
+        podSecurityContext:
+          fsGroup: 65532
+          fsGroupChangePolicy: "OnRootMismatch"
 
         persistence:
           # -- Enable persistence using Persistent Volume Claims
           # ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
           # It can be used to store TLS certificates, see `storage` in certResolvers
-          enabled: false
+          enabled: true
           name: traefik-data
           existingClaim: "pvc-traefik-data"
           accessMode: ReadWriteMany
