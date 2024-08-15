@@ -45,11 +45,10 @@ kind: Service
 metadata:
   name: nginx-service
 spec:
+  type: LoadBalancer
   selector:
     app: nginx
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: NodePort
+  # Default port used by the image
+  - port: 80
 {{- end -}}

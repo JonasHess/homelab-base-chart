@@ -1,3 +1,4 @@
+domain: example.com
 nginx:
   enabled: true
   message: "Hello from nginx!"
