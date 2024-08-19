@@ -73,7 +73,6 @@ spec:
 
         # Additional arguments for the helm command
         additionalArguments:
-          - "--certificatesresolvers.letsencrypt.acme.dnschallenge=true"
           - "--certificatesresolvers.letsencrypt.acme.email={{.Values.letsencrypt.email}}"
           - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare"
