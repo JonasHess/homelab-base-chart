@@ -46,7 +46,7 @@ spec:
           enabled: true
           # this is the name of a TLSOption definition
           options: ""
-          certResolver: "letsencrypt"
+          certResolver: "cloudflare"
 
         certResolvers:
           letsencrypt:
