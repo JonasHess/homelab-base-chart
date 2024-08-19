@@ -1,6 +1,8 @@
 domain: home-server.dev
 cloudflare:
   email: "Jonas@Hess.pm"
+letsencrypt:
+  email: "Jonas@Hess.pm"
 nginx:
   enabled: true
   message: "Hello from nginx!"
