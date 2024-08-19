@@ -75,6 +75,7 @@ spec:
               storage: "/data/acme.json"
               dnsChallenge:
                 provider: cloudflare
+                wildcard: true
                 delayBeforeCheck: 0
                 resolvers:
                   - "1.1.1.1:53" # Cloudflare DNS
@@ -99,14 +100,6 @@ spec:
           dashboard:
             enabled: true # We will use a custom inrgessRoute with basic auth instead of the default one
             insecure: true
-
-        # Additional Static Configuration for Traefik
-        additionalArguments:
-          - "--certificatesresolvers.letsencrypt.acme.dnschallenge=true"
-          - "--certificatesresolvers.letsencrypt.acme.email={{.Values.letsencrypt.email}}"
-          - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
-          - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare"
-          - "--certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0"
 
         # Configure SSL settings
         ssl:
