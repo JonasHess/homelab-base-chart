@@ -27,11 +27,13 @@ spec:
           web:
             port: 80
             nodePort: 32080
-            expose: true
+            expose:
+              enabled: true
           websecure:
             port: 443
             nodePort: 32443
-            expose: true
+            expose:
+              enabled: true
 
           # Additional custom ports
           plex:
