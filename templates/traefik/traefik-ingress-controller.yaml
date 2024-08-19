@@ -141,12 +141,20 @@ spec:
 
         # Traefik Ingress Controller Configurations
         ingressRoute:
-          dashboard:
-            enabled: true
-            annotations:
-              kubernetes.io/ingress.class: "traefik"
-            tls:
-              certResolver: letsencrypt
+           dashboard:
+             enabled: true
+             annotations:
+               kubernetes.io/ingress.class: "traefik"
+             entryPoints:
+               - websecure
+             routes:
+               - match: Host(`traefik.{{.Values.domain}}`)
+                 kind: Rule
+                 services:
+                   - name: api@internal
+                     kind: TraefikService
+             tls:
+               certResolver: letsencrypt
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
