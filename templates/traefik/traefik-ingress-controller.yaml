@@ -15,36 +15,36 @@ spec:
     targetRevision: 30.0.2
     helm:
       # Values file as block file
-      values: |
-        ---
-         additionalArguments:
-            - --entrypoints.websecure.http.tls.certresolver=cloudflare
-            - --entrypoints.websecure.http.tls.domains[0].main={{ .Values.domain }}
-            - --entrypoints.websecure.http.tls.domains[0].sans=*.{{ .Values.domain }}
-            - --entryPoints.web.proxyProtocol.insecure
-            - --entryPoints.web.forwardedHeaders.insecure
-            - --entrypoints.web.http.redirections.entrypoint.to=websecure
-            - --entrypoints.web.http.redirections.entrypoint.scheme=https
-            - --entrypoints.web.http.redirections.entrypoint.permanent=true
-          certificatesResolvers:
-            cloudflare:
-              acme:
-                email: {{ .Values.cloudflare.email }}
-                storage: /data/acme.json
-                dnsChallenge:
-                  provider: cloudflare
-                  delayBeforeCheck: 0
-          env:
-            - name: CF_API_EMAIL
-              valueFrom:
-                secretKeyRef:
-                  key: email
-                  name: cloudflare-api-credentials
-            - name: CF_DNS_API_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  key: apiKey
-                  name: cloudflare-api-credentials
+      valuesObject:
+        additionalArguments:
+           - --entrypoints.websecure.http.tls.certresolver=cloudflare
+           - --entrypoints.websecure.http.tls.domains[0].main={{ .Values.domain }}
+           - --entrypoints.websecure.http.tls.domains[0].sans=*.{{ .Values.domain }}
+           - --entryPoints.web.proxyProtocol.insecure
+           - --entryPoints.web.forwardedHeaders.insecure
+           - --entrypoints.web.http.redirections.entrypoint.to=websecure
+           - --entrypoints.web.http.redirections.entrypoint.scheme=https
+           - --entrypoints.web.http.redirections.entrypoint.permanent=true
+
+        certificatesResolvers:
+          cloudflare:
+            acme:
+              email: {{ .Values.cloudflare.email }}
+              storage: /data/acme.json
+              dnsChallenge:
+                provider: cloudflare
+                delayBeforeCheck: 0
+        env:
+          - name: CF_API_EMAIL
+            valueFrom:
+              secretKeyRef:
+                key: email
+                name: cloudflare-api-credentials
+          - name: CF_DNS_API_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: apiKey
+                name: cloudflare-api-credentials
 
         podSecurityContext:
           fsGroup: 65532
@@ -62,9 +62,7 @@ spec:
           storageClass: "nfs"
           volumeName: "traefik-pv"
           path: /data
-          annotations: {}i get
-          # -- Only mount a subpath of the Volume into the pod
-          # subPath: ""
+          annotations: {}
 
         service:
           enabled: true
