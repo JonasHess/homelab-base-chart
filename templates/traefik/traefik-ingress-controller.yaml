@@ -41,12 +41,12 @@ spec:
                 provider: cloudflare
                 delayBeforeCheck: 0
         env:
-          - name: CF_API_EMAIL
+          - name: CLOUDFLARE_EMAIL
             valueFrom:
               secretKeyRef:
                 key: email
                 name: cloudflare-api-credentials
-          - name: CF_DNS_API_TOKEN
+          - name: CLOUDFLARE_API_KEY
             valueFrom:
               secretKeyRef:
                 key: apiKey
