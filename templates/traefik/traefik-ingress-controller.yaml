@@ -118,8 +118,8 @@ spec:
 
         # Environment variables for the Cloudflare API token
         env:
-          - name: CF_API_EMAIL
-            value: "{{.Values.cloudflare.email}}" # Replace with your Cloudflare email
+#           - name: CF_API_EMAIL
+#             value: "{{.Values.cloudflare.email}}" # Replace with your Cloudflare email
           - name: CF_DNS_API_TOKEN
            # !!  CF_API_KEY DOES NOT WORK !!!
            # use CF_DNS_API_TOKEN instead with the following permissions:
@@ -130,6 +130,11 @@ spec:
               secretKeyRef:
                 name: cloudflare-api-credentials
                 key: apiKey
+          - name: CF_ZONE_API_TOKEN
+             valueFrom:
+               secretKeyRef:
+                 name: cloudflare-api-credentials
+                 key: apiKey
 
         podSecurityContext:
           fsGroup: 65532
