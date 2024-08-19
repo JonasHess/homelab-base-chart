@@ -75,4 +75,6 @@ spec:
           port: 80
   tls:
     certResolver: letsencrypt
+    domains:
+      - main: "*.{{ .Values.domain }}"
 {{- end -}}

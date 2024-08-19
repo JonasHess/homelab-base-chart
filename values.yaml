@@ -1,4 +1,4 @@
-domain: home-server.dev
+domain: "home-server.dev"
 cloudflare:
   email: "Jonas@Hess.pm"
 letsencrypt:
