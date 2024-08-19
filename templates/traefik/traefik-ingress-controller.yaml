@@ -80,8 +80,6 @@ spec:
                 resolvers:
                   - "1.1.1.1:53" # Cloudflare DNS
                   - "8.8.8.8:53" # Google DNS
-              httpChallenge:
-                entryPoint: web
 
         # Enabling Traefik's access logs for monitoring traffic
         accessLogs:
