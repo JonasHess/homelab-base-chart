@@ -1,6 +1,6 @@
 domain: home-server.dev
 cloudflare:
-  email: "Jonas@hess.pm"
+  email: "Jonas@Hess.pm"
 nginx:
   enabled: true
   message: "Hello from nginx!"
