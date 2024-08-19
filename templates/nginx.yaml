@@ -67,7 +67,7 @@ spec:
   entryPoints:
     - websecure
   routes:
-    - match: Host(`nginx.{{ .Values.domain }}`)
+    - match: Host(`nginx.{{ .Values.domain }}.`)
       kind: Rule
       services:
         - name: nginx-service
