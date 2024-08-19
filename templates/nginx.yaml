@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
+  namespace: argocd
 spec:
   replicas: {{ .Values.nginx.replicaCount }}
   selector:
@@ -10,6 +11,7 @@ spec:
       app: nginx
   template:
     metadata:
+      namespace: argocd
       labels:
         app: nginx
     spec:
@@ -31,6 +33,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: html-configmap
+  namespace: argocd
 data:
   index.html: |
     <html>
@@ -44,6 +47,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
+  namespace: argocd
 spec:
   type: ClusterIP
   selector:
