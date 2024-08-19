@@ -67,23 +67,20 @@ spec:
             exposedPort: 445
             protocol: TCP
 
-        # Enable SSL/TLS support and configuration for Let's Encrypt
-        certificatesResolvers:
-          letsencrypt:
-            acme:
-              email: {{.Values.letsencrypt.email}}
-              storage: "/data/acme.json"
-              dnsChallenge:
-                provider: cloudflare
-                wildcard: true
-                delayBeforeCheck: 0
-                resolvers:
-                  - "1.1.1.1:53" # Cloudflare DNS
-                  - "8.8.8.8:53" # Google DNS
-
         # Enabling Traefik's access logs for monitoring traffic
         accessLogs:
           enabled: true
+
+        # Additional arguments for the helm command
+        additionalArguments:
+          - "--set=certificatesResolvers.letsencrypt.acme.email={{.Values.letsencrypt.email}}"
+          - "--set=certificatesResolvers.letsencrypt.acme.storage=/data/acme.json"
+          - "--set=certificatesResolvers.letsencrypt.acme.dnsChallenge.provider=cloudflare"
+          - "--set=certificatesResolvers.letsencrypt.acme.dnsChallenge.wildcard=true"
+          - "--set=certificatesResolvers.letsencrypt.acme.dnsChallenge.delayBeforeCheck=0"
+          - "--set=certificatesResolvers.letsencrypt.acme.dnsChallenge.resolvers={1.1.1.1:53,8.8.8.8:53}"
+          - "--set=certificatesResolvers.letsencrypt.acme.httpChallenge.entryPoint=web"
+
 
         # Traefik logs settings
         logs:
