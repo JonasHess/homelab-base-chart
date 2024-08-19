@@ -95,9 +95,10 @@ spec:
             fields:
               defaultMode: keep
 
-        # Enabling and configuring Traefik's dashboard
-        dashboard:
-          enabled: true
+        ingressRoute:
+          dashboard:
+            enabled: true # We will use a custom inrgessRoute with basic auth instead of the default one
+            insecure: true
 
         # Additional Static Configuration for Traefik
         additionalArguments:
