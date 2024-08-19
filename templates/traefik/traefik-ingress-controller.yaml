@@ -77,7 +77,6 @@ spec:
           - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare"
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0"
-          - "--certificatesresolvers.letsencrypt.acme.dnschallenge.wildcard=true"
 
 
 
