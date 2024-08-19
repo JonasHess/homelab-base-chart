@@ -26,6 +26,12 @@ spec:
            - --entrypoints.web.http.redirections.entrypoint.scheme=https
            - --entrypoints.web.http.redirections.entrypoint.permanent=true
 
+        tls:
+          enabled: true
+          # this is the name of a TLSOption definition
+          options: ""
+          certResolver: "cloudflare"
+
         certificatesResolvers:
           cloudflare:
             acme:
