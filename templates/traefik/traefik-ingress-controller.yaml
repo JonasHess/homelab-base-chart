@@ -69,7 +69,7 @@ spec:
         certificatesResolvers:
           letsencrypt:
             acme:
-              email: {{.Values letsencrypt.email}}
+              email: {{.Values.letsencrypt.email}}
               storage: "/data/acme.json"
               dnsChallenge:
                 provider: cloudflare
@@ -96,12 +96,12 @@ spec:
         # Enabling and configuring Traefik's dashboard
         dashboard:
           enabled: true
-          domain: "traefik.{{.Values domain}" # Replace with your domain
+          domain: "traefik.{{.Values.domain}}" # Replace with your domain
 
         # Additional Static Configuration for Traefik
         additionalArguments:
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge=true"
-          - "--certificatesresolvers.letsencrypt.acme.email={{.Values letsencrypt.email}}"
+          - "--certificatesresolvers.letsencrypt.acme.email={{.Values.letsencrypt.email}}"
           - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare"
           - "--certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0"
@@ -117,7 +117,7 @@ spec:
         # Environment variables for the Cloudflare API token
         env:
           - name: CF_API_EMAIL
-            value: "{{.Values cloudflare.email}}" # Replace with your Cloudflare email
+            value: "{{.Values.cloudflare.email}}" # Replace with your Cloudflare email
           - name: CF_API_KEY
             valueFrom:
               secretKeyRef:
