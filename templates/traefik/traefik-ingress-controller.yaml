@@ -120,11 +120,11 @@ spec:
         env:
           - name: CF_API_EMAIL
             value: "{{.Values.cloudflare.email}}" # Replace with your Cloudflare email
-          - name: CF_API_KEY
-            valueFrom:
-              secretKeyRef:
-                name: cloudflare-api-credentials
-                key: apiKey
+#           - name: CF_API_KEY
+#             valueFrom:
+#               secretKeyRef:
+#                 name: cloudflare-api-credentials
+#                 key: apiKey
 
         podSecurityContext:
           fsGroup: 65532
