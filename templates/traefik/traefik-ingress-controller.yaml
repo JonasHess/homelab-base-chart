@@ -127,15 +127,18 @@ spec:
                 key: apiKey
 
         # Pod Security Contexts
-#         podSecurityContext:
-#           fsGroup: 1000
-#           runAsGroup: 1000
-#           runAsUser: 1000
-#           seccompProfile:
-#             type: RuntimeDefault
         podSecurityContext:
-          fsGroup: 65532
-          fsGroupChangePolicy: "OnRootMismatch"
+          fsGroup: 1000
+          runAsGroup: 1000
+          runAsUser: 1000
+          seccompProfile:
+            type: RuntimeDefault
+
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+              - NET_BIND_SERVICE
 
         # Traefik Ingress Controller Configurations
         ingressRoute:
