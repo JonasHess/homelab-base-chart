@@ -98,7 +98,6 @@ spec:
         # Enabling and configuring Traefik's dashboard
         dashboard:
           enabled: true
-          domain: "traefik.{{.Values.domain}}" # Replace with your domain
 
         # Additional Static Configuration for Traefik
         additionalArguments:
@@ -139,22 +138,7 @@ spec:
           runAsNonRoot: false
           runAsUser: 0
 
-        # Traefik Ingress Controller Configurations
-        ingressRoute:
-           dashboard:
-             enabled: true
-             annotations:
-               kubernetes.io/ingress.class: "traefik"
-             entryPoints:
-               - websecure
-             routes:
-               - match: Host(`traefik.{{.Values.domain}}`)
-                 kind: Rule
-                 services:
-                   - name: api@internal
-                     kind: TraefikService
-             tls:
-               certResolver: letsencrypt
+
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
