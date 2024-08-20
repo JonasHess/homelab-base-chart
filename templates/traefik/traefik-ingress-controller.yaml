@@ -71,14 +71,19 @@ spec:
         accessLogs:
           enabled: true
 
-        # Additional arguments for the helm command
         additionalArguments:
-          - "--certificatesresolvers.letsencrypt.acme.email={{.Values.letsencrypt.email}}"
-          - "--certificatesresolvers.letsencrypt.acme.storage=/data/acme.json"
-          - "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare"
-          - "--certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=0"
-
-
+          - --entrypoints.websecure.http.tls.certresolver=cloudflare
+          - --entrypoints.websecure.http.tls.domains[0].main={{.Values.domain}}
+          - --entrypoints.websecure.http.tls.domains[0].sans=*.{{.Values.domain}}
+          - --entryPoints.web.proxyProtocol.insecure
+          - --entryPoints.web.forwardedHeaders.insecure
+          - --entrypoints.web.http.redirections.entrypoint.to=websecure
+          - --entrypoints.web.http.redirections.entrypoint.scheme=https
+          - --entrypoints.web.http.redirections.entrypoint.permanent=true
+          - --certificatesresolvers.cloudflare.acme.dnschallenge.provider=cloudflare
+          - --certificatesresolvers.cloudflare.acme.email={{.Values.letsencrypt.email}}
+          - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1
+          - --certificatesresolvers.cloudflare.acme.storage=/data/dns_acme.json
 
         # Traefik logs settings
         logs:
@@ -91,7 +96,7 @@ spec:
 
         ingressRoute:
           dashboard:
-            enabled: true # We will use a custom inrgessRoute with basic auth instead of the default one
+            enabled: true
             insecure: true
 
         # Configure SSL settings

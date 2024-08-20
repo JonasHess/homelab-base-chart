@@ -20,4 +20,4 @@ spec:
 #         - name: traefik-forward-auth
 #           namespace: argocd
   tls:
-    certResolver: letsenrypt
+    certResolver: cloudflare
