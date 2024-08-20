@@ -73,8 +73,8 @@ spec:
 
         additionalArguments:
           - --entrypoints.websecure.http.tls.certresolver=cloudflare
-          - --entrypoints.websecure.http.tls.domains[0].main={{.Values.domain}}.
-          - --entrypoints.websecure.http.tls.domains[0].sans=*.{{.Values.domain}}.
+          - --entrypoints.websecure.http.tls.domains[0].main={{.Values.domain}}
+          - --entrypoints.websecure.http.tls.domains[0].sans=*.{{.Values.domain}}
           - --entryPoints.web.proxyProtocol.insecure
           - --entryPoints.web.forwardedHeaders.insecure
           - --entrypoints.web.http.redirections.entrypoint.to=websecure
