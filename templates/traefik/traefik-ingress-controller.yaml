@@ -99,6 +99,28 @@ spec:
             enabled: true
             insecure: true
 
+        tls:
+          enabled: true
+          # this is the name of a TLSOption definition
+          options: ""
+          certResolver: "cloudflare"
+
+        persistence:
+          enabled: true
+          name: traefik-data
+          existingClaim: "pvc-traefik-data"
+          accessMode: ReadWriteMany
+          size: 128Mi
+          storageClass: "nfs"
+          volumeName: "traefik-pv"
+          path: /data
+
+        service:
+          enabled: true
+          type: LoadBalancer
+#           externalIPs:
+#             - 192.168.1.80
+
         # Configure SSL settings
         ssl:
           insecureSkipVerify: true
