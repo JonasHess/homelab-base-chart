@@ -109,21 +109,21 @@ spec:
 
         # Environment variables for the Cloudflare API token
         env:
-          - name: CF_ZONE_API_TOKEN
+          - name: CF_API_EMAIL
             valueFrom:
               secretKeyRef:
+                key: email
                 name: cloudflare-api-credentials
-                key: apiKey
           - name: CF_DNS_API_TOKEN
-           # !!  CF_API_KEY DOES NOT WORK !!!
-           # use CF_DNS_API_TOKEN instead with the following permissions:
+            valueFrom:
+              secretKeyRef:
+                key: apiKey
+                name: cloudflare-api-credentials
+            # use CF_DNS_API_TOKEN instead if CF_API_KEY
+            # with the following permissions:
             # Zone.DNS:Edit
             # Zone.Zone:Read
             # Include: All zones for the account
-            valueFrom:
-              secretKeyRef:
-                name: cloudflare-api-credentials
-                key: apiKey
 
         podSecurityContext:
           fsGroup: 65532
