@@ -21,7 +21,3 @@ spec:
 #           namespace: argocd
   tls:
     certResolver: cloudflare
-    domains:
-      - main: traefik.{{ .Values.domain }}
-        sans:
-          - traefik.{{ .Values.domain }}
