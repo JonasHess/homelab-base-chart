@@ -1,4 +1,6 @@
 domain: "home-server.dev"
+akeyless:
+  path: "/kind-homelab"
 cloudflare:
   email: "Jonas@Hess.pm"
 letsencrypt:
@@ -7,3 +9,6 @@ nginx:
   enabled: true
   message: "Hello from nginx!"
   replicaCount: 3
+homeassistant:
+  volumes:
+    config: "/mnt/tank1/unencrypted/apps/homeassistant/config"
