@@ -12,7 +12,7 @@ nginx:
 homeassistant:
   volumes:
     config: "/mnt/tank1/unencrypted/apps/homeassistant/config"
-traefik-forward-auth:
+traefik_forward_auth:
 # https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_t9DQfKlSX/.well-known/openid-configuration
-  oidc-issuer-url: "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_t9DQfKlSX"
-  oidc-client-id: "6e1bl5i55ao7bhhcufk85ussm"
+  oidc_issuer_url: "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_t9DQfKlSX"
+  oidc_client_id: "6e1bl5i55ao7bhhcufk85ussm"
