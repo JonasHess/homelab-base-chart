@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-forward-auth
+  namespace: argocd
+data:
+  INSECURE_COOKIE: 'true'
+  COOKIE_DOMAIN: {{ .Values.domain }}
+  DOMAINS: {{ .Values.domain }}
+  AUTH_HOST: auth.{{ .Values.domain }}
+  URL_PATH: /_oauth
+  DEFAULT_PROVIDER: oidc
+  PROVIDERS_OIDC_ISSUER_URL: {{.Values.traefik-forward-auth.oidc-issuer-url}}
+  PROVIDERS_OIDC_CLIENT_ID:  {{.Values.traefik-forward-auth.oidc-client-id}}

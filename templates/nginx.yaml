@@ -73,6 +73,9 @@ spec:
         - name: nginx-service
           kind: Service
           port: 80
+      middlewares:
+        - name: traefik-forward-auth
+          namespace: argocd
   tls:
     certResolver: cloudflare
 {{- end -}}

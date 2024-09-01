@@ -1,0 +1,15 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-forward-auth
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+spec:
+  forwardAuth:
+    address: http://traefik-forward-auth
+    trustForwardHeader: true
+    authResponseHeaders:
+      - X-Forwarded-User
