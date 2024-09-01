@@ -11,7 +11,7 @@ spec:
     chart: external-secrets
   destination:
     server: https://kubernetes.default.svc
-    namespace: akeyless
+    namespace: argocd
   syncPolicy:
     automated: {}
     syncOptions:
