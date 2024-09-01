@@ -15,21 +15,19 @@ spec:
     metadata:
       labels:
         app: traefik-forward-auth
-      annotations:
-        container.apparmor.security.beta.kubernetes.io/traefik-forward-auth: runtime/default
     spec:
       containers:
         - name: traefik-forward-auth
           image: thomseddon/traefik-forward-auth:latest
           imagePullPolicy: Always
-#           securityContext:
-#             readOnlyRootFilesystem: true
-#             runAsNonRoot: true
-#             runAsUser: 65534
-#             runAsGroup: 65534
-#             capabilities:
-#               drop:
-#                 - ALL
+          securityContext:
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 65534
+            runAsGroup: 65534
+            capabilities:
+              drop:
+                - ALL
           livenessProbe:
             failureThreshold: 3
             tcpSocket:
