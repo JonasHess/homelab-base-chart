@@ -84,7 +84,6 @@ spec:
           - --certificatesresolvers.cloudflare.acme.email={{.Values.letsencrypt.email}}
           - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1
           - --certificatesresolvers.cloudflare.acme.storage=/data/dns_acme.json
-          - --entrypoints.sftp.address=:2022/tcp
 
         # Traefik logs settings
         logs:
