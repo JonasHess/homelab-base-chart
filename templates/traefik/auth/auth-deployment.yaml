@@ -80,3 +80,5 @@ spec:
                 configMapKeyRef:
                   name: traefik-forward-auth
                   key: URL_PATH
+            - name: LOG_LEVEL
+              value: debug
