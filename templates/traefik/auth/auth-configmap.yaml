@@ -12,4 +12,4 @@ data:
   URL_PATH: /_oauth
   DEFAULT_PROVIDER: oidc
   PROVIDERS_OIDC_ISSUER_URL: {{ .Values.traefik_forward_auth.oidc_issuer_url | quote }}
-  PROVIDERS_OIDC_CLIENT_ID:  {{.Values.traefik_forward_auth.oidc_client_id | quote }}
+  PROVIDERS_OIDC_CLIENT_ID: {{ .Values.traefik_forward_auth.oidc_client_id | quote }}
