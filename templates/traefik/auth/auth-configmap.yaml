@@ -11,5 +11,5 @@ data:
   AUTH_HOST: auth.{{ .Values.domain }}
   URL_PATH: /_oauth
   DEFAULT_PROVIDER: oidc
-  PROVIDERS_OIDC_ISSUER_URL: {{ .Values.traefik_forward_auth.oidc_issuer_url }}
+  PROVIDERS_OIDC_ISSUER_URL: "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_A6gtz8gw5/.well-known/jwks.json"
   PROVIDERS_OIDC_CLIENT_ID: {{ .Values.traefik_forward_auth.oidc_client_id | quote }}
