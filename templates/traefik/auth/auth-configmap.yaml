@@ -12,4 +12,4 @@ data:
   URL_PATH: /_oauth
   DEFAULT_PROVIDER: oidc
   PROVIDERS_OIDC_ISSUER_URL: "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_A6gtz8gw5/.well-known/jwks.json"
-  PROVIDERS_OIDC_CLIENT_ID: {{ .Values.traefik_forward_auth.oidc_client_id | quote }}
+  PROVIDERS_OIDC_CLIENT_ID: "5vmqlfbdhdrma83s40bnrbb59i"
