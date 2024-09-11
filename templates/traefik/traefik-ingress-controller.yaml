@@ -118,8 +118,8 @@ spec:
         service:
           enabled: true
           type: LoadBalancer
-          externalIPs:
-            - {{.Values.traefik.loadBalancerIP}}
+#          externalIPs:
+#            - {{.Values.traefik.loadBalancerIP}}
 
         # Configure SSL settings
         ssl:
