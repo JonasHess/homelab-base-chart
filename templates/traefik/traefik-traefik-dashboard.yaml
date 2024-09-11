@@ -16,8 +16,8 @@ spec:
       services:
         - name: api@internal
           kind: TraefikService
-#       middlewares:
-#         - name: traefik-forward-auth
-#           namespace: argocd
+      middlewares:
+        - name: traefik-forward-auth
+          namespace: argocd
   tls:
     certResolver: cloudflare
