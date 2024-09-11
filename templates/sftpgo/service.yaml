@@ -9,5 +9,6 @@ spec:
       port: 8080
     - name: sftp
       port: 2022
+      protocol: TCP
   selector:
     app: sftpgo
