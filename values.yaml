@@ -1,18 +1,17 @@
 domain: "home-server.dev"
 akeyless:
+  enabled: false
   path: "/kind-homelab"
 cloudflare:
   email: "Jonas@Hess.pm"
 letsencrypt:
   email: "Jonas@Hess.pm"
-nginx:
-  enabled: true
-  message: "Hello from nginx!"
-  replicaCount: 3
 homeassistant:
+  enabled: false
   volumes:
     config: "/mnt/tank1/unencrypted/apps/homeassistant/config"
 traefik:
+  enabled: false
   volumes:
     data: "/mnt/tank1/unencrypted/apps/traefik/data"
   loadBalancerIP: "192.168.0.80"
@@ -21,7 +20,7 @@ traefik_forward_auth:
   oidc_issuer_url: "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_t9DQfKlSX/.well-known/jwks.json"
   oidc_client_id: "6e1bl5i55ao7bhhcufk85ussm"
 sftpgo:
-  enabled: true
+  enabled: false
   volumes:
     data: "/mnt/tank1/unencrypted/apps/sftpgo/data"
     home: "/mnt/tank1/encrypted/apps/sftpgo/home"
