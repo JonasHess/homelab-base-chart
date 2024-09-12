@@ -42,10 +42,16 @@ spec:
               enabled: true
             exposedPort: 32400
             protocol: TCP
+#          sftp:
+ #           port: 2022
+  #          expose:
+   #           enabled: true
+    #        exposedPort: 2022
+     #       protocol: TCP
           sftp:
             port: 2022
             expose:
-              enabled: true
+              default: true
             exposedPort: 2022
             protocol: TCP
           samba-548:
