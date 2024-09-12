@@ -11,5 +11,3 @@ spec:
       services:
         - name: sftpgo-service
           port: 2022
-          proxyProtocol:
-            version: 2
