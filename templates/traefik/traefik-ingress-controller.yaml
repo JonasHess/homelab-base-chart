@@ -85,7 +85,6 @@ spec:
           - --certificatesresolvers.cloudflare.acme.dnschallenge.resolvers=1.1.1.1
           - --certificatesresolvers.cloudflare.acme.storage=/data/dns_acme.json
           - --entrypoints.sftp.address=:2022  # SFTP läuft auf Port 22
-          - --entrypoints.sftp.transport.protocol=tcp  # Definiert das Protokoll als TCP
 
         # Traefik logs settings
         logs:
