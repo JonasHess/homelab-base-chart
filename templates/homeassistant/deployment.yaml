@@ -1,3 +1,4 @@
+{{- if .Values.homeassistant.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,3 +31,4 @@ spec:
         - name: homeassistant-config
           persistentVolumeClaim:
             claimName: homeassistant-config-pvc
+{{- end -}}

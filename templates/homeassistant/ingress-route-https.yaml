@@ -1,3 +1,4 @@
+{{- if .Values.homeassistant.enabled -}}
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
@@ -18,3 +19,4 @@ spec:
           namespace: argocd
   tls:
     certResolver: cloudflare
+{{- end -}}

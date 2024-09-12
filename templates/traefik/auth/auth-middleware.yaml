@@ -1,4 +1,4 @@
----
+{{- if .Values.traefik.enabled -}}
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
@@ -13,3 +13,4 @@ spec:
     trustForwardHeader: true
     authResponseHeaders:
       - X-Forwarded-User
+{{- end -}}

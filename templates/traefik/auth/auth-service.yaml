@@ -1,4 +1,4 @@
----
+{{- if .Values.traefik.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -13,3 +13,4 @@ spec:
       port: 80
       targetPort: 4181
       protocol: TCP
+{{- end -}}

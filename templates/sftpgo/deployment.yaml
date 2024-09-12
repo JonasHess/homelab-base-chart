@@ -1,3 +1,4 @@
+{{- if .Values.sftpgo.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -33,3 +34,4 @@ spec:
         - name: sftpgo-home-volume
           persistentVolumeClaim:
             claimName: sftpgo-home-pvc
+{{- end -}}

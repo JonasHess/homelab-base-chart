@@ -1,3 +1,4 @@
+{{- if .Values.traefik.enabled -}}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -19,3 +20,4 @@ spec:
     kind: PersistentVolumeClaim
     name: pvc-traefik-data
     namespace: argocd
+{{- end -}}
