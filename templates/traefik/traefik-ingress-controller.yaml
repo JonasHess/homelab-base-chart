@@ -28,50 +28,44 @@ spec:
             port: 80
             nodePort: 32080
             expose:
-              enabled: true
+              default: true
           websecure:
             port: 443
             nodePort: 32443
             expose:
-              enabled: true
+              default: true
 
           # Additional custom ports
-          plex:
-            port: 32400
-            expose:
-              enabled: true
-            exposedPort: 32400
-            protocol: TCP
-#          sftp:
- #           port: 2022
-  #          expose:
-   #           enabled: true
-    #        exposedPort: 2022
-     #       protocol: TCP
+{{/*          plex:*/}}
+{{/*            port: 32400*/}}
+{{/*            expose:*/}}
+{{/*              default: true*/}}
+{{/*            exposedPort: 32400*/}}
+{{/*            protocol: TCP*/}}
           sftp:
             port: 2022
             expose:
               default: true
             exposedPort: 2022
             protocol: TCP
-          samba-548:
-            port: 548
-            expose:
-              enabled: true
-            exposedPort: 548
-            protocol: TCP
-          samba-139:
-            port: 139
-            expose:
-              enabled: true
-            exposedPort: 139
-            protocol: TCP
-          samba-445:
-            port: 445
-            expose:
-              enabled: true
-            exposedPort: 445
-            protocol: TCP
+{{/*          samba-548:*/}}
+{{/*            port: 548*/}}
+{{/*            expose:*/}}
+{{/*              default: true*/}}
+{{/*            exposedPort: 548*/}}
+{{/*            protocol: TCP*/}}
+{{/*          samba-139:*/}}
+{{/*            port: 139*/}}
+{{/*            expose:*/}}
+{{/*              default: true*/}}
+{{/*            exposedPort: 139*/}}
+{{/*            protocol: TCP*/}}
+{{/*          samba-445:*/}}
+{{/*            port: 445*/}}
+{{/*            expose:*/}}
+{{/*              default: true*/}}
+{{/*            exposedPort: 445*/}}
+{{/*            protocol: TCP*/}}
 
         # Enabling Traefik's access logs for monitoring traffic
         accessLogs:
