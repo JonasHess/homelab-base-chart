@@ -51,7 +51,7 @@ apps:
       #       - name: "home"
       #         hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"
   sftpgo:
-    enabled: true
+    enabled: false
     generic:
       deployment:
         image: "drakkan/sftpgo:latest"
