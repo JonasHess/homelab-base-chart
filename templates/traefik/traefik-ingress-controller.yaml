@@ -1,4 +1,4 @@
-{{- if .Values.traefik.enabled -}}
+{{- if .Values.apps.traefik.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -36,7 +36,7 @@ spec:
             expose:
               default: true
           # Additional custom ports
-          {{- range $key, $value := .Values.traefik.additionalExposedPorts }}
+          {{- range $key, $value := .Values.apps.traefik.additionalExposedPorts }}
           {{ $key }}:
             port: {{ $value.port }}
             expose:
@@ -97,7 +97,7 @@ spec:
           enabled: true
           type: LoadBalancer
           externalIPs:
-            - {{.Values.traefik.loadBalancerIP}}
+            - {{.Values.apps.traefik.loadBalancerIP}}
 
         # Configure SSL settings
         ssl:

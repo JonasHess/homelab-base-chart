@@ -1,4 +1,4 @@
-{{- if .Values.traefik.enabled -}}
+{{- if .Values.apps.traefik.enabled -}}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -14,7 +14,7 @@ spec:
   storageClassName: manual
   hostPath:
     type: Directory
-    path: {{ .Values.traefik.volumes.data }}
+    path: {{ .Values.apps.traefik.volumes.data }}
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
