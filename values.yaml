@@ -48,9 +48,23 @@ apps:
       persistentVolumeClaims:
       - name: "data"
         hostPath: "/mnt/tank1/unencrypted/apps/test/data"
+      service:
+        ports:
+          - name: http
+            port: 8080
+          - name: sftp
+            port: 2022
+            protocol: TCP
   sftpgo:
     enabled: true
     generic:
+      service:
+        ports:
+          - name: http
+            port: 8080
+          - name: sftp
+            port: 2022
+            protocol: TCP
       persistentVolumeClaims:
       - name: "data"
         hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/data"
