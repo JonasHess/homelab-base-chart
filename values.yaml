@@ -25,7 +25,7 @@ apps:
       #       - name: "home"
       #         hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"
   traefik:
-    enabled: false
+    enabled: true
     additionalExposedPorts:
       sftpgo:
         port: 2022
