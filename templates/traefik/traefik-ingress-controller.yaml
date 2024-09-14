@@ -35,38 +35,15 @@ spec:
             nodePort: 32443
             expose:
               default: true
-
           # Additional custom ports
-{{/*          plex:*/}}
-{{/*            port: 32400*/}}
-{{/*            expose:*/}}
-{{/*              default: true*/}}
-{{/*            exposedPort: 32400*/}}
-{{/*            protocol: TCP*/}}
-          sftp:
-            port: 2022
+          {{- range $key, $value := .Values.traefik.additionalExposedPorts }}
+          {{ $key }}:
+            port: {{ $value.port }}
             expose:
               default: true
-            exposedPort: 2022
-            protocol: TCP
-{{/*          samba-548:*/}}
-{{/*            port: 548*/}}
-{{/*            expose:*/}}
-{{/*              default: true*/}}
-{{/*            exposedPort: 548*/}}
-{{/*            protocol: TCP*/}}
-{{/*          samba-139:*/}}
-{{/*            port: 139*/}}
-{{/*            expose:*/}}
-{{/*              default: true*/}}
-{{/*            exposedPort: 139*/}}
-{{/*            protocol: TCP*/}}
-{{/*          samba-445:*/}}
-{{/*            port: 445*/}}
-{{/*            expose:*/}}
-{{/*              default: true*/}}
-{{/*            exposedPort: 445*/}}
-{{/*            protocol: TCP*/}}
+            exposedPort: {{ $value.port }}
+            protocol: {{ $value.protocol }}
+          {{- end }}
 
         # Enabling Traefik's access logs for monitoring traffic
         accessLogs:

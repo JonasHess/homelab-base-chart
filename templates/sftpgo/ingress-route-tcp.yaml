@@ -6,7 +6,7 @@ metadata:
   namespace: argocd
 spec:
   entryPoints:
-    - sftp
+    - sftpgo
   routes:
     - match: HostSNI(`*`)
       services:
