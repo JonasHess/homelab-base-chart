@@ -1,7 +1,4 @@
 domain: "home-server.dev"
-akeyless:
-  enabled: false
-  path: "/kind-homelab"
 cloudflare:
   email: "Jonas@Hess.pm"
 letsencrypt:
@@ -24,6 +21,9 @@ apps:
       #         hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/data"
       #       - name: "home"
       #         hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"
+  akeyless:
+    enabled: false
+    path: "/kind-homelab"
   traefik:
     enabled: false
     additionalExposedPorts:

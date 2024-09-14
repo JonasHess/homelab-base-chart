@@ -40,7 +40,7 @@ This guide will walk you through the process of setting up OIDC Traefik-Forward-
 
 5. **Set Client Secret**
 
-   Create a Secret in Akeyless with the Client Secret value under the key `{{.Values.akeyless.path}}/oidc/traefik-forward-auth/client_secret`
+   Create a Secret in Akeyless with the Client Secret value under the key `{{.Values.apps.akeyless.path}}/oidc/traefik-forward-auth/client_secret`
 
 ![FireShot Capture 017 - Benutzerpool erstellen } Benutzerpools } Amazon Cognito } eu-central-_ - eu-central-1.console.aws.amazon.com.png](img%2FFireShot%20Capture%20017%20-%20Benutzerpool%20erstellen%20%7D%20Benutzerpools%20%7D%20Amazon%20Cognito%20%7D%20eu-central-_%20-%20eu-central-1.console.aws.amazon.com.png)
 ![FireShot Capture 018 - Benutzerpool erstellen } Benutzerpools } Amazon Cognito } eu-central-_ - eu-central-1.console.aws.amazon.com.png](img%2FFireShot%20Capture%20018%20-%20Benutzerpool%20erstellen%20%7D%20Benutzerpools%20%7D%20Amazon%20Cognito%20%7D%20eu-central-_%20-%20eu-central-1.console.aws.amazon.com.png)
