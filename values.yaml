@@ -45,13 +45,18 @@ apps:
   test:
     enabled: false
     generic:
-      ingress:
-        https:
-          - subdomain: "test"
-            port: 8080
-            middlewares:
-              - name: "forward_auth"
-                namespace: "argocd"
+      deployment:
+        image: "drakkan/sftpgo:latest"
+        ports:
+          - name: http
+            containerPort: 8080
+          - name: sftp
+            containerPort: 2022
+        pvcMounts:
+          - name: "data"
+            mountPath: "/srv/sftpgo"
+          - name: "home"
+            mountPath: "/var/lib/sftpgo"
   sftpgo:
     enabled: true
     generic:
