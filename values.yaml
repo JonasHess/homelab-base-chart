@@ -6,10 +6,6 @@ cloudflare:
   email: "Jonas@Hess.pm"
 letsencrypt:
   email: "Jonas@Hess.pm"
-homeassistant:
-  enabled: false
-  volumes:
-    config: "/mnt/tank1/unencrypted/apps/homeassistant/config"
 traefik:
   enabled: false
   additionalExposedPorts:
@@ -50,6 +46,28 @@ apps:
       #         hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/data"
       #       - name: "home"
       #         hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"
+  homeassistant:
+    enabled: false
+    generic:
+      deployment:
+        image: "lscr.io/linuxserver/homeassistant:latest"
+        ports:
+          - containerPort: 8123
+        pvcMounts:
+          config:
+            mountPath: "/config"
+            hostPath: "/mnt/tank1/unencrypted/apps/homeassistant/config"
+      service:
+        ports:
+          - name: http
+            port: 8123
+      ingress:
+        https:
+          - subdomain: "homeassistant"
+            port: 8123
+            middlewares:
+              - name: "traefik-forward-auth"
+                namespace: "argocd"
   sftpgo:
     enabled: false
     generic:
