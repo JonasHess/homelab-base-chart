@@ -45,18 +45,6 @@ apps:
   test:
     enabled: false
     generic:
-      deployment:
-        image: "drakkan/sftpgo:latest"
-        ports:
-          - name: http
-            containerPort: 8080
-          - name: sftp
-            containerPort: 2022
-        pvcMounts:
-          - name: "data"
-            mountPath: "/srv/sftpgo"
-          - name: "home"
-            mountPath: "/var/lib/sftpgo"
   sftpgo:
     enabled: true
     generic:
@@ -79,3 +67,13 @@ apps:
         hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/data"
       - name: "home"
         hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"
+      deployment:
+        image: "drakkan/sftpgo:latest"
+        ports:
+          - containerPort: 8080
+          - containerPort: 2022
+        pvcMounts:
+          - name: "data"
+            mountPath: "/srv/sftpgo"
+          - name: "home"
+            mountPath: "/var/lib/sftpgo"

@@ -1,0 +1,42 @@
+{{- range $appName, $app := .Values.apps }}
+  {{- if $app.enabled }}
+    {{- if and $app.generic $app.generic.deployment }}
+      {{- $deployment := $app.generic.deployment }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $appName }}-deployment
+  namespace: argocd
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: {{ $appName }}
+  template:
+    metadata:
+      labels:
+        app: {{ $appName }}
+    spec:
+      containers:
+        - name: {{ $appName }}
+          image: {{ $deployment.image }}
+          ports:
+            {{- range $port := $deployment.ports }}
+            - containerPort: {{ $port.containerPort }}
+            {{- end }}
+          volumeMounts:
+            {{- range $mount := $deployment.pvcMounts }}
+            - mountPath: "{{ $mount.mountPath }}"
+              name: {{ $appName }}-{{ $mount.name }}-volume
+            {{- end }}
+      volumes:
+        {{- range $pvc := $deployment.pvcMounts }}
+        - name: {{ $appName }}-{{ $pvc.name }}-volume
+          persistentVolumeClaim:
+            claimName: {{ $appName }}-{{ $pvc.name }}-pvc
+        {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}
