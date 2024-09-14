@@ -45,16 +45,13 @@ apps:
   test:
     enabled: false
     generic:
-      persistentVolumeClaims:
-      - name: "data"
-        hostPath: "/mnt/tank1/unencrypted/apps/test/data"
-      service:
-        ports:
-          - name: http
+      ingress:
+        https:
+          - subdomain: "test"
             port: 8080
-          - name: sftp
-            port: 2022
-            protocol: TCP
+            middlewares:
+              - name: "forward_auth"
+                namespace: "argocd"
   sftpgo:
     enabled: true
     generic:
@@ -65,6 +62,13 @@ apps:
           - name: sftp
             port: 2022
             protocol: TCP
+      ingress:
+        https:
+          - subdomain: "sftpgo"
+            port: 8080
+            middlewares:
+              - name: "traefik-forward-auth"
+                namespace: "argocd"
       persistentVolumeClaims:
       - name: "data"
         hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/data"

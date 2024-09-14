@@ -1,6 +1,7 @@
 {{- range $appName, $app := .Values.apps }}
   {{- if $app.enabled }}
-    {{- range $pvc := $app.generic.persistentVolumeClaims }}
+    {{- if and $app.generic $app.generic.persistentVolumeClaims }}
+      {{- range $pvc := $app.generic.persistentVolumeClaims }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -35,6 +36,7 @@ spec:
   resources:
     requests:
       storage: 10Gi
+      {{- end }}
     {{- end }}
   {{- end }}
 {{- end }}

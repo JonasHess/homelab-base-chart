@@ -1,6 +1,6 @@
 {{- range $appName, $app := .Values.apps }}
   {{- if $app.enabled }}
-    {{- if $app.generic.service }}
+    {{- if and $app.generic $app.generic.service }}
       {{- $svc := $app.generic.service }}
 apiVersion: v1
 kind: Service
