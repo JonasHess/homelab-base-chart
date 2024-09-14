@@ -44,10 +44,27 @@ sftpgo:
 apps:
   test:
     enabled: false
-    generic:
+#     generic:
+      #       persistentVolumeClaims:
+      #       - name: "data"
+      #         hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/data"
+      #       - name: "home"
+      #         hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"
   sftpgo:
     enabled: true
     generic:
+      deployment:
+        image: "drakkan/sftpgo:latest"
+        ports:
+          - containerPort: 8080
+          - containerPort: 2022
+        pvcMounts:
+          data:
+            mountPath: "/srv/sftpgo"
+            hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/data"
+          home:
+            mountPath: "/var/lib/sftpgo"
+            hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"
       service:
         ports:
           - name: http
@@ -62,18 +79,5 @@ apps:
             middlewares:
               - name: "traefik-forward-auth"
                 namespace: "argocd"
-      persistentVolumeClaims:
-      - name: "data"
-        hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/data"
-      - name: "home"
-        hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"
-      deployment:
-        image: "drakkan/sftpgo:latest"
-        ports:
-          - containerPort: 8080
-          - containerPort: 2022
-        pvcMounts:
-          - name: "data"
-            mountPath: "/srv/sftpgo"
-          - name: "home"
-            mountPath: "/var/lib/sftpgo"
+        tcp:
+          - port: 2022

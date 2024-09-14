@@ -27,16 +27,58 @@ spec:
             - containerPort: {{ $port.containerPort }}
             {{- end }}
           volumeMounts:
-            {{- range $mount := $deployment.pvcMounts }}
+            {{- range $mountName, $mount := $deployment.pvcMounts }}
             - mountPath: "{{ $mount.mountPath }}"
-              name: {{ $appName }}-{{ $mount.name }}-volume
+              name: {{ $appName }}-{{ $mountName }}-volume
             {{- end }}
       volumes:
-        {{- range $pvc := $deployment.pvcMounts }}
-        - name: {{ $appName }}-{{ $pvc.name }}-volume
+        {{- range $mountName, $mount := $deployment.pvcMounts }}
+        - name: {{ $appName }}-{{ $mountName }}-volume
           persistentVolumeClaim:
-            claimName: {{ $appName }}-{{ $pvc.name }}-pvc
+            claimName: {{ $appName }}-{{ $mountName }}-pvc
         {{- end }}
+{{- range $mountName, $mount := $deployment.pvcMounts }}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: "{{$appName}}-{{ $mountName }}-pv"
+  namespace: argocd
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  hostPath:
+    type: Directory
+    path: {{ $mount.hostPath }}
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: "{{$appName}}-{{ $mountName }}-pvc"
+    namespace: argocd
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "{{$appName}}-{{ $mountName }}-pvc"
+  namespace: argocd
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 10Gi
+---
+{{- end }}
+
+
+
+
     {{- end }}
   {{- end }}
 {{- end }}
