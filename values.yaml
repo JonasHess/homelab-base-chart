@@ -41,3 +41,18 @@ sftpgo:
   volumes:
     data: "/mnt/tank1/unencrypted/apps/sftpgo/data"
     home: "/mnt/tank1/encrypted/apps/sftpgo/home"
+apps:
+  test:
+    enabled: false
+    generic:
+      persistentVolumeClaims:
+      - name: "data"
+        hostPath: "/mnt/tank1/unencrypted/apps/test/data"
+  sftpgo:
+    enabled: true
+    generic:
+      persistentVolumeClaims:
+      - name: "data"
+        hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/data"
+      - name: "home"
+        hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"

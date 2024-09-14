@@ -1,8 +1,10 @@
-{{- if .Values.sftpgo.enabled -}}
+{{- range $appName, $app := .Values.apps }}
+  {{- if $app.enabled }}
+    {{- range $pvc := $app.generic.persistentVolumeClaims }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: sftpgo-home-pv
+  name: "{{$appName}}-{{ $pvc.name }}-pv"
   namespace: argocd
 spec:
   capacity:
@@ -14,17 +16,17 @@ spec:
   storageClassName: manual
   hostPath:
     type: Directory
-    path: {{.Values.sftpgo.volumes.home}}
+    path: {{ $pvc.hostPath }}
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
-    name: sftpgo-home-pvc
+    name: "{{$appName}}-{{ $pvc.name }}-pvc"
     namespace: argocd
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sftpgo-home-pvc
+  name: "{{$appName}}-{{ $pvc.name }}-pvc"
   namespace: argocd
 spec:
   storageClassName: manual
@@ -33,4 +35,6 @@ spec:
   resources:
     requests:
       storage: 10Gi
-{{- end -}}
+    {{- end }}
+  {{- end }}
+{{- end }}

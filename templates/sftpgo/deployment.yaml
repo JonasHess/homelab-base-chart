@@ -1,4 +1,4 @@
-{{- if .Values.sftpgo.enabled -}}
+{{- if .Values.apps.sftpgo.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:

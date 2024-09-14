@@ -1,4 +1,4 @@
-{{- if .Values.sftpgo.enabled -}}
+{{- if .Values.apps.sftpgo.enabled -}}
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
