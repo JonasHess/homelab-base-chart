@@ -7,11 +7,6 @@ traefik_forward_auth:
 # https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_t9DQfKlSX/.well-known/openid-configuration
   oidc_issuer_url: "https://cognito-idp.eu-central-1.amazonaws.com/eu-central-1_t9DQfKlSX/.well-known/jwks.json"
   oidc_client_id: "6e1bl5i55ao7bhhcufk85ussm"
-sftpgo:
-  enabled: false
-  volumes:
-    data: "/mnt/tank1/unencrypted/apps/sftpgo/data"
-    home: "/mnt/tank1/encrypted/apps/sftpgo/home"
 apps:
   test:
     enabled: false
@@ -21,6 +16,8 @@ apps:
       #         hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/data"
       #       - name: "home"
       #         hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"
+  argocd:
+    enabled: false
   akeyless:
     enabled: false
     path: "/kind-homelab"
