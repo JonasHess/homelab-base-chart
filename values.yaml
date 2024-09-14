@@ -25,7 +25,7 @@ apps:
       #       - name: "home"
       #         hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"
   traefik:
-    enabled: false
+    enabled: true
     additionalExposedPorts:
       sftpgo:
         port: 2022
@@ -42,10 +42,11 @@ apps:
     #     samba-445:
     #       port: 445
     #       protocol: TCP
-
-    volumes:
-      data: "/mnt/tank1/unencrypted/apps/traefik/data"
     loadBalancerIP: "192.168.0.80"
+    generic:
+      persistentVolumeClaims:
+      - name: "data"
+        hostPath: "/mnt/tank1/unencrypted/apps/traefik/data"
   homeassistant:
     enabled: false
     generic:

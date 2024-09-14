@@ -7,7 +7,6 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-options: Prune=true
 spec:
   project: default
   source:
@@ -86,11 +85,7 @@ spec:
         persistence:
           enabled: true
           name: traefik-data
-          existingClaim: "pvc-traefik-data"
-          accessMode: ReadWriteMany
-          size: 128Mi
-          storageClass: "nfs"
-          volumeName: "traefik-pv"
+          existingClaim: "traefik-data-pvc"
           path: /data
 
         service:
