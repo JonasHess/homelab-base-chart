@@ -15,4 +15,5 @@ data:
     issuer:  {{ .Values.traefik_forward_auth.oidc_issuer_url}}
     clientID: {{ .Values.traefik_forward_auth.oidc_client_id}}
     clientSecret: $oidc.auth0.clientSecret
+    requestedScopes: [openid, email, profile]
 {{- end -}}
