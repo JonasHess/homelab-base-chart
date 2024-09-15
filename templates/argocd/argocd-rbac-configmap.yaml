@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/name: argocd-rbac-cm
     app.kubernetes.io/part-of: argocd
 data:
-  scopes: '[groups]'
+  scopes: '[cognito:groups]'
   policy.csv: |
     g, admin, role:admin
   policy.default: role:readonly
