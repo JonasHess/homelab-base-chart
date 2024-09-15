@@ -17,5 +17,6 @@ data:
     clientSecret: $oidc.auth0.clientSecret
     requestedScopes: ["openid", "profile", "email"]
     requestedIDTokenClaims: {"groups": {"essential": true}}
+    redirectURL: https://argocd.{{ .Values.domain }}/auth/callback
 
 {{- end -}}
