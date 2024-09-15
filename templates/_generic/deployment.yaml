@@ -31,12 +31,24 @@ spec:
             - mountPath: "{{ $mount.mountPath }}"
               name: {{ $appName }}-{{ $mountName }}-volume
             {{- end }}
+          {{- if $deployment.envFrom }}
+          envFrom:
+            {{- if $deployment.envFrom.configMapRef }}
+            - configMapRef:
+                name: {{ $deployment.envFrom.configMapRef }}
+            {{- end }}
+            {{- if $deployment.envFrom.secretRef }}
+            - secretRef:
+                name: {{ $deployment.envFrom.secretRef }}
+            {{- end }}
+          {{- end }}
       volumes:
         {{- range $mountName, $mount := $deployment.pvcMounts }}
         - name: {{ $appName }}-{{ $mountName }}-volume
           persistentVolumeClaim:
             claimName: {{ $appName }}-{{ $mountName }}-pvc
         {{- end }}
+
 {{- range $mountName, $mount := $deployment.pvcMounts }}
 ---
 apiVersion: v1
