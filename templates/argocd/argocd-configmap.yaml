@@ -16,5 +16,6 @@ data:
     clientID: {{ .Values.traefik_forward_auth.oidc_client_id}}
     clientSecret: $oidc.auth0.clientSecret
     requestedScopes: ["openid", "profile", "email"]
-    insecureEnableGroups: true
+    requestedIDTokenClaims: {"groups": {"essential": true}}
+
 {{- end -}}
