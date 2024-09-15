@@ -10,7 +10,6 @@ metadata:
 data:
   scopes: '[cognito:groups]'
   policy.csv: |
-    g, admin, role:admin
+    g, argocd-admin, role:admin
   policy.default: role:readonly
-
 {{- end -}}
