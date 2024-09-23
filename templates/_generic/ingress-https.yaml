@@ -16,7 +16,7 @@ spec:
       kind: Rule
       priority: 10
       services:
-        - name: {{ $appName }}-service
+        - name: {{ if $ingress.service }}{{ $ingress.service }}{{ else }}{{ $appName }}-service{{ end }}
           port: {{ $ingress.port }}
       {{- if $ingress.middlewares }}
       middlewares:

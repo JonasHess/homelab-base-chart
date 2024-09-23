@@ -43,6 +43,15 @@ apps:
     generic:
       persistentVolumeClaims:
         data: "/mnt/somewhere/unencrypted/apps/traefik/data"
+  drone:
+    generic:
+      persistentVolumeClaims:
+        data: "/mnt/somewhere/unencrypted/apps/drone/data"
+      ingress:
+        https:
+          - subdomain: "drone"
+            port: 8080
+            service: "drone-helm"
   homeassistant:
     enabled: false
     generic:
