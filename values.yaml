@@ -39,7 +39,7 @@ apps:
     #     samba-445:
     #       port: 445
     #       protocol: TCP
-    loadBalancerIP: "192.168.0.80"
+    loadBalancerIP: null
     generic:
       persistentVolumeClaims:
         data: "/mnt/somewhere/unencrypted/apps/traefik/data"

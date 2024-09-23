@@ -91,8 +91,10 @@ spec:
         service:
           enabled: true
           type: LoadBalancer
+  {{- if .Values.apps.traefik.loadBalancerIP }}
           externalIPs:
             - {{.Values.apps.traefik.loadBalancerIP}}
+  {{- end }}
 
         # Configure SSL settings
         ssl:
