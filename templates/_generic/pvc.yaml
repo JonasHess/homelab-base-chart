@@ -1,11 +1,11 @@
 {{- range $appName, $app := .Values.apps }}
   {{- if $app.enabled }}
     {{- if and $app.generic $app.generic.persistentVolumeClaims }}
-      {{- range $pvc := $app.generic.persistentVolumeClaims }}
+      {{- range $pvcName, $pvcPath := $app.generic.persistentVolumeClaims }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: "{{$appName}}-{{ $pvc.name }}-pv"
+  name: "{{$appName}}-{{ $pvcName }}-pv"
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: Prune=true
@@ -19,17 +19,17 @@ spec:
   storageClassName: manual
   hostPath:
     type: Directory
-    path: {{ $pvc.hostPath }}
+    path: {{ $pvcPath }}
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
-    name: "{{$appName}}-{{ $pvc.name }}-pvc"
+    name: "{{$appName}}-{{ $pvcName }}-pvc"
     namespace: argocd
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: "{{$appName}}-{{ $pvc.name }}-pvc"
+  name: "{{$appName}}-{{ $pvcName }}-pvc"
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: Prune=true

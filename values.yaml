@@ -42,8 +42,7 @@ apps:
     loadBalancerIP: "192.168.0.80"
     generic:
       persistentVolumeClaims:
-      - name: "data"
-        hostPath: "/mnt/tank1/unencrypted/apps/traefik/data"
+        data: "/mnt/tank1/unencrypted/apps/traefik/data"
   homeassistant:
     enabled: false
     generic:
