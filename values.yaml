@@ -13,9 +13,9 @@ apps:
 #     generic:
       #       persistentVolumeClaims:
       #       - name: "data"
-      #         hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/data"
+      #         hostPath: "/mnt/somewhere/unencrypted/apps/sftpgo/data"
       #       - name: "home"
-      #         hostPath: "/mnt/tank1/encrypted/apps/sftpgo/home"
+      #         hostPath: "/mnt/somewhere/encrypted/apps/sftpgo/home"
   argocd:
     enabled: false
   akeyless:
@@ -42,7 +42,7 @@ apps:
     loadBalancerIP: "192.168.0.80"
     generic:
       persistentVolumeClaims:
-        data: "/mnt/tank1/unencrypted/apps/traefik/data"
+        data: "/mnt/somewhere/unencrypted/apps/traefik/data"
   homeassistant:
     enabled: false
     generic:
@@ -53,7 +53,7 @@ apps:
         pvcMounts:
           config:
             mountPath: "/config"
-            hostPath: "/mnt/tank1/unencrypted/apps/homeassistant/config"
+            hostPath: "/mnt/somewhere/unencrypted/apps/homeassistant/config"
       service:
         ports:
           - name: http
@@ -76,10 +76,10 @@ apps:
         pvcMounts:
           data:
             mountPath: "/srv/sftpgo"
-            hostPath: "/mnt/tank1/encrypted/apps/sftpgo/data"
+            hostPath: "/mnt/somewhere/encrypted/apps/sftpgo/data"
           config:
             mountPath: "/var/lib/sftpgo"
-            hostPath: "/mnt/tank1/unencrypted/apps/sftpgo/config"
+            hostPath: "/mnt/somewhere/unencrypted/apps/sftpgo/config"
         envFrom:
           configMapRef: "sftpgo-config-map"
           secretRef: "sftpgo-secret"
