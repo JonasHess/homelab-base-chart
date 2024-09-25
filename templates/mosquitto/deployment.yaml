@@ -19,7 +19,7 @@ spec:
     spec:
       initContainers:
         - name: init-permissions
-          image: busybox:latest
+          image: eclipse-mosquitto:latest
           command: ['sh', '-c', 'chown mosquitto:mosquitto /mosquitto/config/auth.txt && chmod 0700 /mosquitto/config/auth.txt && chown mosquitto:mosquitto /mosquitto/config/mosquitto.conf']
           volumeMounts:
             - mountPath: "/mosquitto/config/auth.txt"
