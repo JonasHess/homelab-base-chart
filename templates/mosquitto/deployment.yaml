@@ -45,5 +45,5 @@ spec:
             name: mosquitto-config-cm
         - name: mosquitto-secret-volume
           secret:
-            name: mosquitto-secret
+            secretName: mosquitto-secret
 {{- end -}}
