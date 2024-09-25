@@ -25,9 +25,12 @@ spec:
         - name: smarthome
           image: 629099703604.dkr.ecr.eu-central-1.amazonaws.com/nudelkiste
           imagePullPolicy: Always
-          env:
-            - name: MQTT_URL
-              value: "tcp://mosquitto-service:1883"
+          envFrom:
+            - configMapRef:
+                name: smarthome3-config-map
+            - secretRef:
+                name: smarthome3-secret
+
           livenessProbe:
             httpGet:
               path: /actuator/health
