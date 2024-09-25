@@ -17,6 +17,17 @@ spec:
       labels:
         app: mosquitto
     spec:
+      initContainers:
+        - name: init-permissions
+          image: busybox:latest
+          command: ['sh', '-c', 'chown mosquitto:mosquitto /mosquitto/config/auth.txt && chmod 0700 /mosquitto/config/auth.txt && chown mosquitto:mosquitto /mosquitto/config/mosquitto.conf']
+          volumeMounts:
+            - mountPath: "/mosquitto/config/auth.txt"
+              subPath: "auth.txt"
+              name: mosquitto-secret-volume
+            - mountPath: "/mosquitto/config/mosquitto.conf"
+              subPath: "mosquitto.conf"
+              name: mosquitto-config-volume
       containers:
         - name: mosquitto
           image: eclipse-mosquitto:latest
@@ -36,9 +47,11 @@ spec:
             - mountPath: "/mosquitto/config/auth.txt"
               subPath: "auth.txt"
               name: mosquitto-secret-volume
+              readOnly: true
             - mountPath: "/mosquitto/config/mosquitto.conf"
               subPath: "mosquitto.conf"
               name: mosquitto-config-volume
+              readOnly: true
       volumes:
         - name: mosquitto-config-volume
           configMap:
