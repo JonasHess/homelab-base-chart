@@ -76,6 +76,8 @@ apps:
                 namespace: "argocd"
   aws:
     enabled: false
+  smarthome3:
+    enabled: false
   sftpgo:
     enabled: false
     generic:

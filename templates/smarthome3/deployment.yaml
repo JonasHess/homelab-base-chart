@@ -1,0 +1,39 @@
+{{- if .Values.apps.smarthome3.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smarthome-deployment
+  namespace: argocd
+  labels:
+    app: containous
+    name: smarthome-deployment
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: containous
+      task: smarthome-task
+  template:
+    metadata:
+      labels:
+        app: containous
+        task: smarthome-task
+    spec:
+      containers:
+        - name: smarthome
+          image: 629099703604.dkr.ecr.eu-central-1.amazonaws.com/nudelkiste
+          imagePullPolicy: Always
+          env:
+            - name: MQTT_URL
+              value: "tcp://mosquitto-service:1883"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 30
+      imagePullSecrets:
+        - name: regcred
+{{- end -}}
