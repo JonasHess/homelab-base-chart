@@ -22,6 +22,10 @@ spec:
       containers:
         - name: {{ $appName }}
           image: {{ $deployment.image }}
+          {{- if $deployment.privileged }}
+          securityContext:
+            privileged: true
+          {{- end }}
           ports:
             {{- range $port := $deployment.ports }}
             - containerPort: {{ $port.containerPort }}

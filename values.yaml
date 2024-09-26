@@ -86,6 +86,7 @@ apps:
     enabled: false
   zigbee2mqtt:
     enabled: false
+    privileged: true
     mqttServer: "mqtt://mosquitto-service"
     devicePath: "/dev/ttyACM0"
     zigbeeChannel: "15"
