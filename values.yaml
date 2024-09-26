@@ -86,7 +86,6 @@ apps:
     enabled: false
   zigbee2mqtt:
     enabled: false
-    privileged: true
     mqttServer: "mqtt://mosquitto-service"
     devicePath: "/dev/ttyACM0"
     zigbeeChannel: "15"
@@ -95,6 +94,7 @@ apps:
     mqttBaseTopic: "zigbee2mqtt"
     generic:
       deployment:
+        privileged: true
         image: "koenkk/zigbee2mqtt:latest"
         ports:
           - containerPort: 8080
