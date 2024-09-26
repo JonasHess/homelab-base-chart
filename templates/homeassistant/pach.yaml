@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: home-assistant-patches
+  namespace: argocd
+data:
+  patch.yaml: |
+    # Example patch values
+    homeassistant:
+      name: Home
+    http:
+      server_port: 8123

@@ -19,6 +19,10 @@ spec:
       labels:
         app: {{ $appName }}
     spec:
+      {{- if $deployment.initContainers }}
+      initContainers:
+        {{- toYaml $deployment.initContainers | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ $appName }}
           image: {{ $deployment.image }}
@@ -62,6 +66,12 @@ spec:
             path: {{ $mount.hostPath | quote }}
             type: CharDevice
         {{- end }}
+        {{- range $mountName, $mount := $deployment.configMapMounts }}
+        - name: {{ $appName }}-{{ $mountName }}-volume
+          configMap:
+            name: {{ $mount.configMapName }}
+        {{- end }}
+
 {{- range $mountName, $mount := $deployment.pvcMounts }}
 ---
 apiVersion: v1

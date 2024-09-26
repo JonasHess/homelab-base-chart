@@ -56,6 +56,17 @@ apps:
     enabled: false
     generic:
       deployment:
+        initContainers:
+          - name: patch-config
+            image: busybox
+            command: ['sh', '-c', "cp /config/configuration.yaml /tmp/configuration.yaml && yq eval-all 'select(fileIndex == 0) * select(fileIndex == 1)' /tmp/configuration.yaml /patch/patch.yaml > /patched/configuration.yaml"]
+            volumeMounts:
+              - name: config
+                mountPath: /config
+              - name: patch-volume
+                mountPath: /patch
+              - name: patched-config
+                mountPath: /patched
         image: "lscr.io/linuxserver/homeassistant:latest"
         ports:
           - containerPort: 8123
