@@ -102,7 +102,7 @@ apps:
             mountPath: "/app/data"
             hostPath: "/mnt/somewhere/unencrypted/apps/zigbee2mqtt/data"
         deviceMounts:
-          zigbeeUsb:
+          zigbeeusb:
             mountPath: "/dev/ttyACM0"
             hostPath: "/dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_2a6293476f3bec118baba4957a0af07f-if00-port0"
         envFrom:
