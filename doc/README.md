@@ -47,3 +47,14 @@ This guide will walk you through the process of setting up OIDC Traefik-Forward-
 ![FireShot Capture 019 - Benutzerpool erstellen } Benutzerpools } Amazon Cognito } eu-central-_ - eu-central-1.console.aws.amazon.com.png](img%2FFireShot%20Capture%20019%20-%20Benutzerpool%20erstellen%20%7D%20Benutzerpools%20%7D%20Amazon%20Cognito%20%7D%20eu-central-_%20-%20eu-central-1.console.aws.amazon.com.png)
 ![FireShot Capture 020 - Benutzerpool erstellen } Benutzerpools } Amazon Cognito } eu-central-_ - eu-central-1.console.aws.amazon.com.png](img%2FFireShot%20Capture%20020%20-%20Benutzerpool%20erstellen%20%7D%20Benutzerpools%20%7D%20Amazon%20Cognito%20%7D%20eu-central-_%20-%20eu-central-1.console.aws.amazon.com.png)
 ![FireShot Capture 021 - Benutzerpool erstellen } Benutzerpools } Amazon Cognito } eu-central-_ - eu-central-1.console.aws.amazon.com.png](img%2FFireShot%20Capture%20021%20-%20Benutzerpool%20erstellen%20%7D%20Benutzerpools%20%7D%20Amazon%20Cognito%20%7D%20eu-central-_%20-%20eu-central-1.console.aws.amazon.com.png)
+
+## Homeassistant
+Add the following to your `configuration.yaml` file. IP 10.1.0.0/16 is the IP-range of the kubernetes cluster.
+```yaml
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - 10.1.0.0/16
+    - ::1
+```
