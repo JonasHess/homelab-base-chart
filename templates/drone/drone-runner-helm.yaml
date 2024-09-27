@@ -60,6 +60,10 @@ spec:
           ##
           DRONE_NAMESPACE_DEFAULT: argocd
 
+          ## Ref: https://kube-runner.docs.drone.io/installation/reference/drone-secret-plugin-endpoint/
+          #
+          DRONE_SECRET_PLUGIN_ENDPOINT: http://drone-kubernetes-secrets:3000
+
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
