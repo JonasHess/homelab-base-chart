@@ -71,9 +71,9 @@ apps:
         https:
           - subdomain: "homeassistant"
             port: 8123
-#            middlewares:
-#              - name: "traefik-forward-auth"
-#                namespace: "argocd"
+            middlewares:
+              - name: "traefik-forward-auth"
+                namespace: "argocd"
   aws:
     enabled: false
   smarthome3:
