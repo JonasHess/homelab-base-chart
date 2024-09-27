@@ -71,12 +71,12 @@ apps:
         https:
           - subdomain: "homeassistant"
             port: 8123
-#             middlewares:
-#               - name: "traefik-forward-auth"
-#                 namespace: "argocd"
+            middlewares:
+              - name: "traefik-forward-auth"
+                namespace: "argocd"
           - subdomain: "homeassistant"
             priority: 20
-            matchSuffix: "&& PathPrefix(`/api`)"
+            matchSuffix: "&& (PathPrefix(`/api`) || PathPrefix(`/auth`))"
             port: 8123
   aws:
     enabled: false
