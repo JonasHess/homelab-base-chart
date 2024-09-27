@@ -9,6 +9,8 @@ kind: IngressRoute
 metadata:
   name: {{ $appName }}-https-{{ $ingress.port }}-{{ $index }}
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=true
 spec:
   entryPoints:
     - websecure
