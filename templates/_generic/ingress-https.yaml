@@ -2,12 +2,12 @@
   {{- if $app.enabled }}
     {{- if and $app.generic $app.generic.ingress }}
        {{- if $app.generic.ingress.https }}
-         {{- range $ingress := $app.generic.ingress.https }}
+         {{- range $index, $ingress := $app.generic.ingress.https }}
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: {{ $appName }}-https-{{ $ingress.port }}
+  name: {{ $appName }}-https-{{ $ingress.port }}-{{ $index }}
   namespace: argocd
 spec:
   entryPoints:
