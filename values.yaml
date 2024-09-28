@@ -149,7 +149,7 @@ apps:
         ports:
           - name: http
             port: 8080
-          - name: http
+          - name: webdav
             port: 8081
           - name: sftp
             port: 2022
