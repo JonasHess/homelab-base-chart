@@ -159,9 +159,9 @@ apps:
           - subdomain: "sftpgo"
             port: 8080
             middlewares:
-              - name: "traefik-forward-auth"
-                namespace: "argocd"
               - name: "traefik-plugin-cloudflare"
+                namespace: "argocd"
+              - name: "traefik-forward-auth"
                 namespace: "argocd"
           - subdomain: "webdav"
             port: 8081
