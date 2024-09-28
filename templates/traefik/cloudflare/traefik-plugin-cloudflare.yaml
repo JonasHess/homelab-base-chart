@@ -10,7 +10,7 @@ metadata:
 spec:
   plugin:
     traefik-plugin-cloudflare:
-{{/*      overwriteRequestHeader: true*/}}
+      overwriteRequestHeader: false
 {{/* https://api.cloudflare.com/client/v4/ips */}}
       trustedCIDRs: 
         - "173.245.48.0/20"
