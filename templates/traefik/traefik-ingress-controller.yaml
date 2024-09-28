@@ -40,6 +40,8 @@ spec:
             nodePort: 32443
             expose:
               default: true
+            middlewares:
+              - "argocd-cloudflarewarp@kubernetescrd"
           # Additional custom ports
           {{- range $key, $value := .Values.apps.traefik.additionalExposedPorts }}
           {{ $key }}:
