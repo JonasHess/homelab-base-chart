@@ -26,7 +26,7 @@ spec:
           plugins:
             traefik-plugin-cloudflare:
               moduleName: "github.com/agence-gaya/traefik-plugin-cloudflare"
-              version: "v1.2.0"
+              version: "v1.1.0"
 
         # Configure the ports exposed by Traefik
         ports:
