@@ -12,5 +12,5 @@ spec:
     traefik-plugin-cloudflare:
       overwriteRequestHeader: "true"
       refreshInterval: 24h
-      trustedCIDRs: ""
+      trustedCIDRs: []
 {{- end -}}
