@@ -71,7 +71,7 @@ spec:
         # Traefik logs settings
         logs:
           general:
-            level: INFO
+            level: DEBUG
           access:
             enabled: true
             fields:
