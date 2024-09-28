@@ -39,6 +39,10 @@ spec:
             - mountPath: "{{ $mount.mountPath }}"
               name: {{ $appName }}-{{ $mountName }}-volume
             {{- end }}
+            {{- range $mountName, $mount := $deployment.configMapMounts }}
+            - mountPath: "{{ $mount.mountPath }}"
+              name: {{ $appName }}-{{ $mountName }}-volume
+            {{- end }}
           {{- if $deployment.envFrom }}
           envFrom:
             {{- if $deployment.envFrom.configMapRef }}
@@ -62,6 +66,12 @@ spec:
             path: {{ $mount.hostPath | quote }}
             type: CharDevice
         {{- end }}
+        {{- range $mountName, $mount := $deployment.configMapMounts }}
+        - name: {{ $appName }}-{{ $mountName }}-volume
+          configMap:
+            name: {{ $mount.configMapName }}
+        {{- end }}
+
 {{- range $mountName, $mount := $deployment.pvcMounts }}
 ---
 apiVersion: v1

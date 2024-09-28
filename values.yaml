@@ -140,8 +140,11 @@ apps:
             mountPath: "/var/lib/sftpgo"
             hostPath: "/mnt/somewhere/unencrypted/apps/sftpgo/config"
         envFrom:
-          configMapRef: "sftpgo-config-map"
           secretRef: "sftpgo-secret"
+        configMapMounts:
+          configmap:
+            mountPath: "/var/lib/sftpgo/.config/sftpgo"
+            configMapName: "sftpgo-config"
       service:
         ports:
           - name: http
