@@ -2,14 +2,13 @@
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
-  name: cloudflare
+  name: cloudflarewarp
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 
 spec:
   plugin:
-    traefik-plugin-cloudflare:
-      trustedCIDRs: [ ]
-      overwriteRequestHeader: true
+    cloudflarewarp:
+      disableDefault: false
 {{- end -}}
