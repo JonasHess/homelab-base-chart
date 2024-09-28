@@ -11,4 +11,5 @@ spec:
   plugin:
     cloudflarewarp:
       disableDefault: true
+      trustip: []
 {{- end -}}
