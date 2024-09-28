@@ -10,6 +10,6 @@ metadata:
 spec:
   plugin:
     cloudflarewarp:
-      disableDefault: true
+      disableDefault: "true"
       trustip: []
 {{- end -}}
