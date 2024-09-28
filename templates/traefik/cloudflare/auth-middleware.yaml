@@ -1,0 +1,14 @@
+{{- if .Values.apps.traefik.enabled -}}
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: cloudflare
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+
+spec:
+  cloudflare:
+    trustedCIDRs: []
+    overwriteRequestHeader: true
+{{- end -}}

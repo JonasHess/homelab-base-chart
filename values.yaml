@@ -161,6 +161,8 @@ apps:
             middlewares:
               - name: "traefik-forward-auth"
                 namespace: "argocd"
+              - name: cloudflare
+                namespace: "argocd"
           - subdomain: "webdav"
             port: 8081
         tcp:
