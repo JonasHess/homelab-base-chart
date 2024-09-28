@@ -11,5 +11,6 @@ spec:
   plugin:
     traefik-plugin-cloudflare:
       trustedCIDRs: []
-      overwriteRequestHeader: true
+      overwriteRequestHeader: false
+      debug: "true"
 {{- end -}}
