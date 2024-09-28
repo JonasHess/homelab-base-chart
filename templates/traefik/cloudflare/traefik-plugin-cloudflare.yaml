@@ -10,5 +10,5 @@ metadata:
 spec:
   plugin:
     cloudflarewarp:
-      disableDefault: false
+      disableDefault: true
 {{- end -}}
