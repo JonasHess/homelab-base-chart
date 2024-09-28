@@ -9,12 +9,15 @@ metadata:
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: Prune=true
+# WARNING: THIS WILL DELETE THE PVC AND ALL DATA INSIDE IT
+  finalizers: []
 spec:
   capacity:
     storage: 10Gi
   volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
+# WARNING: THIS WILL DELETE THE PVC AND ALL DATA INSIDE IT
   persistentVolumeReclaimPolicy: Retain
   storageClassName: manual
   hostPath:
@@ -33,6 +36,8 @@ metadata:
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: Prune=true
+# WARNING: THIS WILL DELETE THE PVC AND ALL DATA INSIDE IT
+  finalizers: []
 spec:
   storageClassName: manual
   accessModes:
