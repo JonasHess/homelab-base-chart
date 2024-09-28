@@ -24,7 +24,6 @@ spec:
 
         experimental:
           plugins:
-            enabled: true
             cloudflarewarp:
               moduleName: "github.com/PseudoResonance/cloudflarewarp"
               version: "v1.4.0"
