@@ -6,7 +6,7 @@ metadata:
   name: sftpgo-config
   namespace: argocd
 data:
-  sftpgo.conf: |
+  sftpgo.json: |
     {
       "httpd": {
         "enabled_login_methods": ["password", "public_key", "oidc"],
