@@ -21,11 +21,12 @@ spec:
         # Enabling Traefik as an Ingress Controller
         deployment:
           enabled: true
-          experimental:
-            plugins:
-              traefik-plugin-cloudflare:
-                moduleName: "github.com/agence-gaya/traefik-plugin-cloudflare"
-                version: "v1.2.0"
+
+        experimental:
+          plugins:
+            traefik-plugin-cloudflare:
+              moduleName: "github.com/agence-gaya/traefik-plugin-cloudflare"
+              version: "v1.2.0"
 
         # Configure the ports exposed by Traefik
         ports:
