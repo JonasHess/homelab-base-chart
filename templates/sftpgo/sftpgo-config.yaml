@@ -21,6 +21,13 @@ data:
             }
           }
         ]
+      },
+      "webdavd": {
+        "bindings": [
+          {
+            "port": 8081
+          }
+        ]
       }
     }
 {{- end -}}

@@ -149,6 +149,8 @@ apps:
         ports:
           - name: http
             port: 8080
+          - name: http
+            port: 8081
           - name: sftp
             port: 2022
             protocol: TCP
@@ -159,5 +161,7 @@ apps:
             middlewares:
               - name: "traefik-forward-auth"
                 namespace: "argocd"
+          - subdomain: "webdav"
+            port: 8081
         tcp:
           - port: 2022
