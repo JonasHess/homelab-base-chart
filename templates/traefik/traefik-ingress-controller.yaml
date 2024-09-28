@@ -24,9 +24,9 @@ spec:
 
         experimental:
           plugins:
-            cloudflarewarp:
-              moduleName: "github.com/PseudoResonance/cloudflarewarp"
-              version: "v1.4.0"
+            traefik-plugin-cloudflare:
+              moduleName: "github.com/agence-gaya/traefik-plugin-cloudflare"
+              version: "v1.2.0"
 
         # Configure the ports exposed by Traefik
         ports:
