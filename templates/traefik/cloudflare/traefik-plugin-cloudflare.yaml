@@ -13,4 +13,5 @@ spec:
       overwriteRequestHeader: true
       trustedCIDRs: []
       debug: true
+      loglevel: "DEBUG"
 {{- end -}}
