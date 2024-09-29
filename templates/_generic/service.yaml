@@ -8,9 +8,6 @@ metadata:
   name: {{ $appName }}-service
   namespace: argocd
 spec:
-  {{- if $app.externalTrafficPolicy }}
-  externalTrafficPolicy: {{ $app.externalTrafficPolicy }}
-  {{- end }}
   ports:
     {{- range $port := $svc.ports }}
     - name: {{ $port.name }}
