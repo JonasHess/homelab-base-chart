@@ -23,7 +23,7 @@ apps:
     path: "/kind-homelab"
   traefik:
     enabled: false
-    trafficPolicy: Local
+    externalTrafficPolicy: Local
     additionalExposedPorts:
       sftpgo:
         port: 2022
