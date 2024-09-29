@@ -2245,7 +2245,7 @@ spec:
           ## Prometheus-Operator v0.39.0 and later support TLS natively.
           ##
           tls:
-            enabled: true
+            enabled: false
             # Value must match version names from https://golang.org/pkg/crypto/tls/#pkg-constants
             tlsMinVersion: VersionTLS13
             # The default webhook port is 10250 in order to work out-of-the-box in GKE private clusters and avoid adding firewall rules.
@@ -4832,17 +4832,7 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: argocd
-{{/*  syncPolicy:*/}}
-{{/*    automated:*/}}
-{{/*      allowEmpty: true*/}}
-{{/*      prune: true*/}}
-{{/*      selfHeal: true*/}}
-{{/*    syncOptions:*/}}
-{{/*      - allowEmpty=true*/}}
-{{/*    retry:*/}}
-{{/*      limit: 5 # number of failed sync attempt retries; unlimited number of attempts if less than 0*/}}
-{{/*      backoff:*/}}
-{{/*        duration: 5s # the amount to back off. Default unit is seconds, but could also be a duration (e.g. "2m", "1h")*/}}
-{{/*        factor: 2 # a factor to multiply the base duration after each failed retry*/}}
-{{/*        maxDuration: 1m # the maximum amount of time allowed for the backoff strategy*/}}
-{{- end}}
+  syncPolicy:
+    syncOptions:
+      - ServerSideApply=true
+{{- end }}
