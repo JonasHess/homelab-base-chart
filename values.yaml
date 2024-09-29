@@ -175,7 +175,7 @@ apps:
         https:
           - subdomain: "prometheus"
             port: 9090
-            service: "prometheus-helm-kube-prome-prometheus"
+            service: "prometheus-prometheus"
             middlewares:
               - name: "traefik-forward-auth"
                 namespace: "argocd"
