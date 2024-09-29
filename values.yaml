@@ -159,7 +159,7 @@ apps:
           - subdomain: "sftpgo"
             port: 8080
             middlewares:
-              - name: "cloudflare2"
+              - name: "cloudflare"
                 namespace: "argocd"
 #              - name: "traefik-forward-auth"
 #                namespace: "argocd"
