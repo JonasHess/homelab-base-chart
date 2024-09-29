@@ -168,3 +168,5 @@ apps:
             port: 8081
         tcp:
           - port: 2022
+  prometheus:
+    enabled: false
