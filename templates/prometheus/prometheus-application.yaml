@@ -469,7 +469,7 @@ spec:
             labels: {}
 
             ## Final form of the hostname for each per replica ingress is
-            ## {{ ingressPerReplica.hostPrefix }}-{{ $replicaNumber }}.{{ ingressPerReplica.hostDomain }}
+{{/*            ## {{ ingressPerReplica.hostPrefix }}-{{ $replicaNumber }}.{{ ingressPerReplica.hostDomain }}*/}}
             ##
             ## Prefix for the per replica ingress that will have `-$replicaNumber`
             ## appended to the end
@@ -495,7 +495,7 @@ spec:
             tlsSecretPerReplica:
               enabled: false
               ## Final form of the secret for each per replica ingress is
-              ## {{ tlsSecretPerReplica.prefix }}-{{ $replicaNumber }}
+{{/*              ## {{ tlsSecretPerReplica.prefix }}-{{ $replicaNumber }}*/}}
               ##
               prefix: "alertmanager"
 
@@ -3330,7 +3330,7 @@ spec:
             labels: {}
 
             ## Final form of the hostname for each per replica ingress is
-            ## {{ ingressPerReplica.hostPrefix }}-{{ $replicaNumber }}.{{ ingressPerReplica.hostDomain }}
+{{/*            ## {{ ingressPerReplica.hostPrefix }}-{{ $replicaNumber }}.{{ ingressPerReplica.hostDomain }}*/}}
             ##
             ## Prefix for the per replica ingress that will have `-$replicaNumber`
             ## appended to the end
@@ -3356,7 +3356,7 @@ spec:
             tlsSecretPerReplica:
               enabled: false
               ## Final form of the secret for each per replica ingress is
-              ## {{ tlsSecretPerReplica.prefix }}-{{ $replicaNumber }}
+{{/*              ## {{ tlsSecretPerReplica.prefix }}-{{ $replicaNumber }}*/}}
               ##
               prefix: "prometheus"
 
