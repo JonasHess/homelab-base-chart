@@ -21,7 +21,6 @@ spec:
     {{- end }}
   selector:
     app: {{ $appName }}
-  externalTrafficPolicy: "Local"
     {{- end }}
   {{- end }}
 {{- end }}
