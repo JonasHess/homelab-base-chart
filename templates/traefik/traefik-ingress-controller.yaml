@@ -97,7 +97,8 @@ spec:
         service:
           enabled: true
           type: LoadBalancer
-          externalTrafficPolicy: Local
+          spec:
+            externalTrafficPolicy: Local
   {{- if .Values.apps.traefik.loadBalancerIP }}
           externalIPs:
             - {{.Values.apps.traefik.loadBalancerIP}}
