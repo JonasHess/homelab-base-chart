@@ -35,11 +35,15 @@ spec:
             nodePort: 32080
             expose:
               default: true
+            middlewares:
+              - "argocd-cloudflare@kubernetescrd"
           websecure:
             port: 443
             nodePort: 32443
             expose:
               default: true
+            middlewares:
+              - "argocd-cloudflare@kubernetescrd"
           # Additional custom ports
           {{- range $key, $value := .Values.apps.traefik.additionalExposedPorts }}
           {{ $key }}:

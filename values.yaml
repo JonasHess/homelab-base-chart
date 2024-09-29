@@ -43,6 +43,9 @@ apps:
     generic:
       persistentVolumeClaims:
         data: "/mnt/somewhere/unencrypted/apps/traefik/data"
+    middlewares:
+      cloudflare:
+        allowedCIDRs: []
   drone:
     generic:
       persistentVolumeClaims:
@@ -159,10 +162,8 @@ apps:
           - subdomain: "sftpgo"
             port: 8080
             middlewares:
-              - name: "cloudflare"
+              - name: "traefik-forward-auth"
                 namespace: "argocd"
-#              - name: "traefik-forward-auth"
-#                namespace: "argocd"
           - subdomain: "webdav"
             port: 8081
         tcp:

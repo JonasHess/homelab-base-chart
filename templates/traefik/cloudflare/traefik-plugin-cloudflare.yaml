@@ -1,4 +1,4 @@
-{{- if .Values.apps.traefik.enabled -}}
+{{- if .Values.apps.traefik.middlewares.cloudflare.enabled -}}
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
@@ -10,7 +10,11 @@ metadata:
 spec:
   plugin:
     traefik-plugin-cloudflare:
-      allowedCIDRs: "192.168.0.0/24"
+      {{- if .Values.apps.traefik.middlewares.cloudflare.allowedCIDRs }}
+      allowedCIDRs:
+        {{- range .Values.apps.traefik.middlewares.cloudflare.allowedCIDRs }}
+        - {{ . }}
+        {{- end }}
+      {{- end }}
       overwriteRequestHeader: false
-      debug: "true"
 {{- end -}}
