@@ -170,3 +170,12 @@ apps:
           - port: 2022
   prometheus:
     enabled: false
+    generic:
+      ingress:
+        https:
+          - subdomain: "prometheus"
+            port: 9090
+            service: "prometheus-helm-kube-prome-prometheus"
+            middlewares:
+              - name: "traefik-forward-auth"
+                namespace: "argocd"
