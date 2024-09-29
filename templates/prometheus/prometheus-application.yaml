@@ -14,8 +14,7 @@ spec:
     targetRevision: 63.1.0
     helm:
       # Values file as block file
-      values: |
-        ---
+      valuesObject:
         # Default values for kube-prometheus-stack.
         # This is a YAML-formatted file.
         # Declare variables to be passed into your templates.
