@@ -182,21 +182,21 @@ apps:
   homematic:
     enabled: false
     generic:
-      deployment:
-        privileged: true
-        image: "https://jens-maus.github.io/RaspberryMatic:latest"
-        ports:
-          - containerPort: 8080
-        pvcMounts:
-          data:
-            mountPath: "/usr/local"
-            hostPath: "/mnt/somewhere/unencrypted/apps/homematic/ccu_data"
-          lib:
-            mountPath: "/lib/modules"
-            hostPath: "/lib/modules"
-          udev:
-            mountPath: "/run/udev/control"
-            hostPath: "/run/udev/control"
+#      deployment:
+#        privileged: true
+#        image: "https://jens-maus.github.io/RaspberryMatic:latest"
+#        ports:
+#          - containerPort: 8080
+#        pvcMounts:
+#          data:
+#            mountPath: "/usr/local"
+#            hostPath: "/mnt/somewhere/unencrypted/apps/homematic/ccu_data"
+#          lib:
+#            mountPath: "/lib/modules"
+#            hostPath: "/lib/modules"
+#          udev:
+#            mountPath: "/run/udev/control"
+#            hostPath: "/run/udev/control"
 #        deviceMounts:
 #          zigbeeusb:
 #            mountPath: "/dev/ttyACM0"
