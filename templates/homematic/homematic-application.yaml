@@ -171,10 +171,4 @@ spec:
           # @default -- See values.yaml
           main:
             enabled: false
-
-
-
-  destination:
-    server: "https://kubernetes.default.svc"
-    namespace: homematic
 {{- end }}
