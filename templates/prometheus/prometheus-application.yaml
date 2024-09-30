@@ -3654,8 +3654,8 @@ spec:
             ##
             serviceMonitorSelector:
               matchLabels:
-                release: "{{ $.Release.Name }}"
-{{/*                release: "kube-prometheus-stack"*/}}
+{{/*                release: "{{ $.Release.Name }}"*/}}
+                release: "kube-prometheus-stack"
             ## Example which selects ServiceMonitors with label "prometheus" set to "somelabel"
             # serviceMonitorSelector:
             #   matchLabels:
