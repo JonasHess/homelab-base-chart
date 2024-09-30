@@ -3664,7 +3664,8 @@ spec:
             ## Namespaces to be selected for ServiceMonitor discovery.
             ##
             serviceMonitorNamespaceSelector:
-              any: true
+              matchLabels:
+                namespace: argocd
             ## Example which selects ServiceMonitors in namespaces with label "prometheus" set to "somelabel"
             # serviceMonitorNamespaceSelector:
             #   matchLabels:
