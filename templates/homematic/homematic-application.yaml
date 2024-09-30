@@ -177,8 +177,4 @@ spec:
   destination:
     server: "https://kubernetes.default.svc"
     namespace: homematic
-  syncPolicy:
-    syncOptions:
-{{/*      - ServerSideApply=true*/}}
-      - Prune=true
 {{- end }}
