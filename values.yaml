@@ -184,7 +184,7 @@ apps:
     generic:
       deployment:
         privileged: true
-        image: "raspberrymatic/raspberrymatic:latest"
+        image: "https://jens-maus.github.io/RaspberryMatic:latest"
         ports:
           - containerPort: 8080
         pvcMounts:
