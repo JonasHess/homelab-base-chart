@@ -18,10 +18,10 @@ spec:
       # Values file as block file
       valuesObject:
         persistence:
-          data:
-            # -- enabling persistent data. See options at https://bjw-s.github.io/helm-charts/docs/common-library/common-library-storage/
-            enabled: true
-            mountPath: /mnt/tank1/unencrypted/apps/homematic/ccu_data
+        data:
+          # -- enabling persistent data. See options at https://bjw-s.github.io/helm-charts/docs/common-library/common-library-storage/
+          enabled: false
+          mountPath: /usr/local
           sys:
             enabled: true
             type: hostPath
