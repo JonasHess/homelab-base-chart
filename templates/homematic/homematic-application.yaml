@@ -176,7 +176,7 @@ spec:
 
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: argocd
+    namespace: homematic
   syncPolicy:
     syncOptions:
 {{/*      - ServerSideApply=true*/}}
