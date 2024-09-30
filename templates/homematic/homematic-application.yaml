@@ -170,7 +170,7 @@ spec:
           # -- Enable and configure ingress settings for the chart under this key.
           # @default -- See values.yaml
           main:
-            enabled: false
+            enabled: true
 
   destination:
     server: "https://kubernetes.default.svc"
