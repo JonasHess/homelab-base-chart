@@ -3655,6 +3655,7 @@ spec:
             serviceMonitorSelector:
               matchLabels:
                 release: "{{ $.Release.Name }}"
+{{/*                release: "kube-prometheus-stack"*/}}
             ## Example which selects ServiceMonitors with label "prometheus" set to "somelabel"
             # serviceMonitorSelector:
             #   matchLabels:
@@ -3662,7 +3663,8 @@ spec:
 
             ## Namespaces to be selected for ServiceMonitor discovery.
             ##
-            serviceMonitorNamespaceSelector: {}
+            serviceMonitorNamespaceSelector:
+              any: true
             ## Example which selects ServiceMonitors in namespaces with label "prometheus" set to "somelabel"
             # serviceMonitorNamespaceSelector:
             #   matchLabels:
