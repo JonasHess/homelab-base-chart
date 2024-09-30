@@ -1,8 +1,8 @@
-{{- if .Values.apps.prometheus.enabled -}}
+{{- if .Values.apps.homematic.enabled -}}
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prometheus-stack
+  name: homematic
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
