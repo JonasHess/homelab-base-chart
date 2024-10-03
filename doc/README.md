@@ -48,7 +48,7 @@ This guide will walk you through the process of setting up OIDC Traefik-Forward-
 ![FireShot Capture 020 - Benutzerpool erstellen } Benutzerpools } Amazon Cognito } eu-central-_ - eu-central-1.console.aws.amazon.com.png](img%2FFireShot%20Capture%20020%20-%20Benutzerpool%20erstellen%20%7D%20Benutzerpools%20%7D%20Amazon%20Cognito%20%7D%20eu-central-_%20-%20eu-central-1.console.aws.amazon.com.png)
 ![FireShot Capture 021 - Benutzerpool erstellen } Benutzerpools } Amazon Cognito } eu-central-_ - eu-central-1.console.aws.amazon.com.png](img%2FFireShot%20Capture%20021%20-%20Benutzerpool%20erstellen%20%7D%20Benutzerpools%20%7D%20Amazon%20Cognito%20%7D%20eu-central-_%20-%20eu-central-1.console.aws.amazon.com.png)
 
-## Homeassistant
+# Homeassistant
 Add the following to your `configuration.yaml` file. IP 10.1.0.0/16 is the IP-range of the kubernetes cluster.
 ```yaml
 http:
@@ -58,3 +58,52 @@ http:
     - 10.1.0.0/16
     - ::1
 ```
+
+# Homematic
+Installation guide
+https://github.com/jens-maus/RaspberryMatic/wiki/Installation-Kubernetes
+
+If you get the following error during the installation:
+```bash
+g1905:~$ sudo modprobe eq3_char_loop
+modprobe: ERROR: could not insert 'eq3_char_loop': Exec format error
+```
+
+Try the following (adapt the kernel version to your version):
+
+```bash
+uname -a
+sudo apt reinstall linux-headers-5.13.0-35-generic
+sudo apt reinstall pivccu-modules-dkms
+sudo service pivccu-dkms start
+sudo modprobe eq3_char_loop
+```
+
+If you get the following error during the start of the container, or you don't have internet connetion:
+```bash
+Identifying Homematic RF-Hardware: ...cat: can't open '/sys/class/net/eth0/address': No such file or directory
+```
+
+Adapt the Mac-Address in the `10-network.rules` file to the correct one. You can find the correct Mac-Address with the following commands:
+```bash
+ip link show
+```
+
+```bash
+sudo nano /etc/udev/rules.d/10-network.rules
+```
+
+add the following line to the file:
+```bash
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="9c:6b:00:20:1e:41", NAME="eth0"
+```
+
+Reloead the configuration and reboot the system:
+```bash
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+sudo reboot
+```
+
+Maybe it needs some time till the application are reachable via the domains again.
+I don't know why, but after some time it works again.
