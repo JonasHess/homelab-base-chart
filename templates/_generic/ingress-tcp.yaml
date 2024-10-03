@@ -8,7 +8,7 @@ metadata:
   name: {{ $appName }}-tcp-{{ $ingress.port }}
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-options: Prune=true
+    argocd.argoproj.io/sync-options: Prune=true,SkipDryRunOnMissingResource=true
 spec:
   entryPoints:
     - {{ $appName }}

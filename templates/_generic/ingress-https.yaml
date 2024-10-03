@@ -10,7 +10,7 @@ metadata:
   name: {{ $appName }}-https-{{ $ingress.port }}-{{ $index }}
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-options: Prune=true
+    argocd.argoproj.io/sync-options: Prune=true,SkipDryRunOnMissingResource=true
 spec:
   entryPoints:
     - websecure
