@@ -181,6 +181,20 @@ apps:
                 namespace: "argocd"
   homematic:
     enabled: false
+    generic:
+#      deployment:
+#        pvcMounts:
+#          config:
+#            mountPath: "/NOT-USED"
+#            hostPath: "/mnt/somewhere/unencrypted/apps/homematic/ccu-data"
+      ingress:
+        https:
+          - subdomain: "homematic"
+            port: 8099
+            service: "homematic2-raspberrymatic"
+            middlewares:
+              - name: "traefik-forward-auth"
+                namespace: "argocd"
 #    generic:
 #      deployment:
 #        privileged: true
